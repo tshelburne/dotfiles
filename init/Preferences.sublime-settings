@@ -43,7 +43,7 @@
 	"font_size": 10,
 	"highlight_modified_tabs": true,
 	"hot_exit": false,
-	"line_padding_bottom": 5,
+	"line_padding_bottom": 3,
 	"match_brackets": true,
 	"match_brackets_angle": true,
 	"remember_open_files": false,
