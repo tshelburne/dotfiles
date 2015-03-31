@@ -1,0 +1,4 @@
+npm install -g gulp
+npm install -g n
+
+n latest
