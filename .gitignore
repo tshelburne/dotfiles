@@ -1,3 +1,14 @@
+# global hide directory for project files, etc.
+*_githide
+
+# random files / folders that show up in projects
+.idea/
+vendor/
+.tags
+.tags_sorted_by_file
+.gemtags
+npm-debug.log
+
 # Compiled Python files
 *.pyc
 

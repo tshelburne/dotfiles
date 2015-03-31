@@ -1,7 +1,23 @@
 [alias]
+	# my specific flavors
+	aa = add --all
+	au = add -u
+	c  = commit
+	cm = commit -m
+	ck = checkout
+	ckm = checkout master
+	ckb = checkout -b
+	ff = merge --ff-only
+	noff = merge --no-ff
+	b = branch
+	ps = push origin
+	pl = pull origin
+	plu = pull upstream
+
+	l = "!source ~/.githelpers && pretty_git_log"
 
 	# View abbreviated SHA, description, and history graph of the latest 20 commits
-	l = log --pretty=oneline -n 20 --graph --abbrev-commit
+	# l = log --pretty=oneline -n 20 --graph --abbrev-commit
 
 	# View the current working tree status using the short format
 	s = status -s
@@ -16,7 +32,7 @@
 	p = !"git pull; git submodule foreach git pull origin master"
 
 	# Clone a repository including all submodules
-	c = clone --recursive
+	# c = clone --recursive
 
 	# Commit all changes
 	ca = !git add -A && git commit -av
