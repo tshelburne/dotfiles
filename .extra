@@ -1,2 +1,10 @@
 # enable shims and autocompletion in rbenv
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+
+# git config details
+GIT_AUTHOR_NAME="Tim Shelburne"
+GIT_COMMITTER_NAME="$GIT_AUTHOR_NAME"
+git config --global user.name "$GIT_AUTHOR_NAME"
+GIT_AUTHOR_EMAIL="shelburt02@gmail.com"
+GIT_COMMITTER_EMAIL="$GIT_AUTHOR_EMAIL"
+git config --global user.email "$GIT_AUTHOR_EMAIL"
