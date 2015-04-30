@@ -82,6 +82,8 @@ brew install ghc cabal-install
 brew install node
 brew install php56
 brew install php56-mcrypt
+brew install rbenv
+brew install ruby-build
 
 # Install other useful binaries.
 brew install ack
