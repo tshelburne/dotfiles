@@ -94,6 +94,27 @@ function gitio() {
 	curl -i http://git.io/ -F "url=${2}" -F "code=${1}";
 }
 
+function gh() {
+  # Open up the github url for the branch you are on.
+  giturl=$(git config --get remote.origin.url)
+  if [ "$giturl" == "" ]
+    then
+     echo "Not a git repository or no remote.origin.url set"
+     return 1
+  fi
+
+  giturl=${giturl/git\@github\.com\:/https://github.com/}
+  giturl=${giturl/\.git/\/tree/}
+  branch="$(git symbolic-ref HEAD 2>/dev/null)" ||
+  branch="(unnamed branch)"     # detached HEAD
+  branch=${branch##refs/heads/}
+  giturl=$giturl$branch
+  # ubuntu command
+  # xdg-open $giturl
+  open $giturl
+  echo $giturl
+}
+
 # Start an HTTP server from a directory, optionally specifying the port
 function server() {
 	local port="${1:-8000}";
