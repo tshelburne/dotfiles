@@ -10,7 +10,7 @@ done;
 unset file;
 
 # Add directory marking
-source .marks/.functions
+source ~/.marks/.functions
 
 # Case-insensitive globbing (used in pathname expansion)
 shopt -s nocaseglob;
