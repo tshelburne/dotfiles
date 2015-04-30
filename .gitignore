@@ -3,6 +3,8 @@
 
 # random files / folders that show up in projects
 .idea/
+.bundle/
+.sass_cache/
 vendor/
 .tags
 .tags_sorted_by_file
