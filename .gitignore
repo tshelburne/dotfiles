@@ -10,6 +10,7 @@ vendor/
 .tags_sorted_by_file
 .gemtags
 npm-debug.log
+*dump.rdb
 
 # Compiled Python files
 *.pyc

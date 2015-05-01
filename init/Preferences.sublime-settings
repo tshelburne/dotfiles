@@ -20,7 +20,8 @@
 		"._*",
 		"Thumbs.db",
 		".Spotlight-V100",
-		".Trashes"
+		".Trashes",
+		"dump.rdb"
 	],
 	"folder_exclude_patterns": [
 		".git",
