@@ -11,6 +11,7 @@ vendor/
 .gemtags
 npm-debug.log
 *dump.rdb
+.vagrant
 
 # Compiled Python files
 *.pyc
