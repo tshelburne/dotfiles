@@ -106,5 +106,9 @@ brew install tree
 # brew install webkit2png
 # brew install zopfli
 
+# heroku deployments
+brew install postgresql
+brew install heroku-toolbelt
+
 # Remove outdated versions from the cellar.
 brew cleanup
