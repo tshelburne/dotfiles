@@ -67,6 +67,7 @@ brew install hydra
 brew install john
 brew install knock
 brew install nmap
+brew install openssl
 brew install pngcheck
 brew install socat
 brew install sqlmap
