@@ -86,6 +86,7 @@ brew install php56-mcrypt
 brew install rbenv
 brew install ruby-build
 brew install python
+brew install purescript
 
 # Install other useful binaries.
 brew install ack
