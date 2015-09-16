@@ -29,7 +29,8 @@
 		".idea",
 		".jhw-cache",
 		".sass-cache",
-		".vagrant"
+		".vagrant",
+		".haste_cache"
 	],
 	"binary_file_patterns": [
 		".DS_Store",
