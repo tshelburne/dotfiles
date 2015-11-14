@@ -108,6 +108,8 @@ brew install tree
 # brew install webkit2png
 # brew install zopfli
 
+brew install awscli
+
 # heroku deployments
 brew install postgresql
 brew install heroku-toolbelt
