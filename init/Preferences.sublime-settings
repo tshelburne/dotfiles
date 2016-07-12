@@ -30,7 +30,8 @@
 		".jhw-cache",
 		".sass-cache",
 		".vagrant",
-		".haste_cache"
+		".haste_cache",
+		"__pycache__"
 	],
 	"binary_file_patterns": [
 		".DS_Store",
