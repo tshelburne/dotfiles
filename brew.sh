@@ -79,14 +79,18 @@ brew install xpdf
 brew install xz
 
 # Install languages
-brew install ghc cabal-install
-brew install node
+brew install haskell-stack
+brew install node --without-npm
 brew install php56
 brew install php56-mcrypt
 brew install rbenv
 brew install ruby-build
 brew install python
 brew install purescript
+
+# non-brew language setup
+echo prefix=~/.npm-packages >> ~/.npmrc
+curl -L https://www.npmjs.com/install.sh | sh
 
 # Install other useful binaries.
 brew install ack
@@ -102,7 +106,7 @@ brew install lastpass-cli
 # brew install pv
 # brew install rename
 # brew install rhino
-brew install speedtest_cli
+# brew install speedtest_cli
 # brew install ssh-copy-id
 brew install tree
 # brew install webkit2png
@@ -112,7 +116,7 @@ brew install awscli
 
 # heroku deployments
 brew install postgresql
-brew install heroku-toolbelt
+brew install heroku
 
 # Remove outdated versions from the cellar.
 brew cleanup
