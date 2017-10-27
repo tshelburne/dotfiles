@@ -1,12 +1,5 @@
 [
 	{ "keys": ["super+alt+w"], "command": "close_all" },
-	{
-		"keys": ["alt+shift+r"],
-		"command": "shell_command",
-		"args": {
-			"command": "vagrant ssh -c assess_rebuild"
-		}
-	},
 
 	// git conflict resolver
 	{ "keys": ["ctrl+alt+f"], "command": "find_next_conflict" },
