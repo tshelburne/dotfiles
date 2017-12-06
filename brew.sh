@@ -83,7 +83,6 @@ brew install xz
 
 # Install languages
 brew install haskell-stack
-brew install node --without-npm
 brew install php56
 brew install php56-mcrypt
 brew install rbenv
@@ -92,8 +91,8 @@ brew install python
 brew install purescript
 
 # non-brew language setup
-echo prefix=~/.npm-packages >> ~/.npmrc
-curl -L https://www.npmjs.com/install.sh | sh
+curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.6/install.sh | bash
+nvm install --lts node
 
 # Install other useful binaries.
 brew install ack
