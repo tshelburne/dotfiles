@@ -93,6 +93,7 @@ brew install purescript
 # non-brew language setup
 curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.6/install.sh | bash
 nvm install --lts node
+npm i -g diff-so-fancy # used for git configuration of `git d`
 
 # Install other useful binaries.
 brew install ack
