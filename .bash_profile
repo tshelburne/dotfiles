@@ -12,6 +12,8 @@ unset file;
 # Add directory marking
 source ~/.marks/.functions
 
+source ~/.gitcompletion.bash
+
 # Case-insensitive globbing (used in pathname expansion)
 shopt -s nocaseglob;
 
@@ -36,7 +38,7 @@ elif [ -f /etc/bash_completion ]; then
 fi;
 
 # Enable tab completion for `g` by marking it as an alias for `git`
-if type _git &> /dev/null && [ -f /usr/local/etc/bash_completion.d/git-completion.bash ]; then
+if type _git &> /dev/null && [ -f ~/.gitcompletion.bash ]; then
 	complete -o default -o nospace -F _git g;
 fi;
 
