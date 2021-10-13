@@ -5,7 +5,7 @@
 	c  = commit
 	cm = commit -m
 	ck = checkout
-	ckm = checkout master
+	ckm = checkout main
 	ckb = checkout -b
 	ff = merge --ff-only
 	noff = merge --no-ff
