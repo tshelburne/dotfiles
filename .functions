@@ -94,7 +94,7 @@ function gitio() {
 	curl -i http://git.io/ -F "url=${2}" -F "code=${1}";
 }
 
-function gh() {
+function github() {
   # Open up the github url for the branch you are on.
   giturl=$(git config --get remote.origin.url)
   if [ "$giturl" == "" ]

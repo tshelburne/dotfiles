@@ -78,6 +78,7 @@ brew install purescript
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
 nvm install --lts node
 brew install yarn
+brew install gh
 npm i -g diff-so-fancy # used for git configuration of `git d`
 
 # Install other useful binaries.
