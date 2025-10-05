@@ -162,3 +162,6 @@ PROMPT2="${yellow}→ ${reset}"
 
 # Deno setup
 . "/Users/timshelburne/.deno/env"
+
+# enable passing literals that don't match any files as-is (instead of throwing an error)
+setopt nonomatch
