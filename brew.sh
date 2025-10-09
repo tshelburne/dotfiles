@@ -86,5 +86,8 @@ brew install ack
 #brew install exiv2
 brew install tree
 
+# custom installations
+./install/ollama.sh
+
 # Remove outdated versions from the cellar.
 brew cleanup
