@@ -1,6 +1,8 @@
-# Mathias’s dotfiles
+# macOS dotfiles (zsh)
 
 ![Screenshot of my shell prompt](http://i.imgur.com/EkEtphC.png)
+
+**Note:** This dotfiles setup is optimized for **zsh** (the default shell on macOS since Catalina). Legacy bash configuration files are available in the `legacy/` directory if needed.
 
 ## Installation
 
@@ -8,21 +10,29 @@
 
 You can clone the repository wherever you want. (I like to keep it in `~/Projects/dotfiles`, with `~/dotfiles` as a symlink.) The bootstrapper script will pull in the latest version and copy the files to your home folder.
 
-```bash
-git clone https://github.com/mathiasbynens/dotfiles.git && cd dotfiles && source bootstrap.sh
+```zsh
+git clone https://github.com/tshelburne/dotfiles.git && cd dotfiles && source bootstrap.sh
 ```
 
 To update, `cd` into your local `dotfiles` repository and then:
 
-```bash
+```zsh
 source bootstrap.sh
 ```
 
 Alternatively, to update while avoiding the confirmation prompt:
 
-```bash
+```zsh
 set -- -f; source bootstrap.sh
 ```
+
+### Shell Support
+
+This repository is configured for **zsh**:
+
+- **Zsh configuration**: `.zprofile`, `.zshrc` (includes custom prompt and completions)
+- **Shared files**: `.aliases`, `.functions`, `.exports`, `.extra` (work with any POSIX shell)
+- **Legacy bash files**: Available in `legacy/` directory for reference
 
 ### Git-free install
 
@@ -40,7 +50,7 @@ If `~/.path` exists, it will be sourced along with the other files, before any f
 
 Here’s an example `~/.path` file that adds `/usr/local/bin` to the `$PATH`:
 
-```bash
+```zsh
 export PATH="/usr/local/bin:$PATH"
 ```
 
@@ -50,7 +60,7 @@ If `~/.extra` exists, it will be sourced along with the other files. You can use
 
 My `~/.extra` looks something like this:
 
-```bash
+```zsh
 # Git credentials
 # Not in the repository, to prevent people from accidentally committing under my name
 GIT_AUTHOR_NAME="Mathias Bynens"
@@ -67,7 +77,7 @@ You could also use `~/.extra` to override settings, functions and aliases from m
 
 When setting up a new Mac, you may want to set some sensible OS X defaults:
 
-```bash
+```zsh
 ./.osx
 ```
 
@@ -75,7 +85,7 @@ When setting up a new Mac, you may want to set some sensible OS X defaults:
 
 When setting up a new Mac, you may want to install some common [Homebrew](http://brew.sh/) formulae (after installing Homebrew, of course):
 
-```bash
+```zsh
 ./brew.sh
 ```
 

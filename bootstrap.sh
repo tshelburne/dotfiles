@@ -7,8 +7,20 @@ git pull origin master;
 function doIt() {
 	rsync --exclude ".git/" --exclude ".DS_Store" --exclude "bootstrap.sh" \
 		--exclude "README.md" --exclude "LICENSE-MIT.txt" --exclude "init/" \
-		--exclude "brew.sh" -avh --no-perms . ~;
-	source ~/.bash_profile;
+		--exclude "brew.sh" --exclude "legacy/" --exclude "install/" \
+		-avh --no-perms . ~;
+
+	# Source zsh configuration
+	if [ -n "$ZSH_VERSION" ]; then
+		# Running in zsh
+		source ~/.zprofile;
+		source ~/.zshrc;
+	else
+		# Running in another shell (likely zsh will be used for interactive sessions)
+		echo "Note: This dotfiles setup is optimized for zsh."
+		echo "After installation, make sure zsh is your default shell:"
+		echo "  chsh -s \$(which zsh)"
+	fi
 }
 
 if [ "$1" == "--force" -o "$1" == "-f" ]; then

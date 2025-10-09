@@ -28,11 +28,10 @@ brew install moreutils
 brew install findutils
 # Install GNU `sed`, overwriting the built-in `sed`.
 brew install gnu-sed --with-default-names
-# Install Bash 4.
-# Note: don’t forget to add `/usr/local/bin/bash` to `/etc/shells` before
-# running `chsh`.
-brew install bash
-brew install bash-completion
+
+# Install zsh and completions (macOS includes zsh by default, but this gets the latest version)
+brew install zsh
+brew install zsh-completions
 
 # Install `wget` with IRI support.
 brew install wget --with-iri
