@@ -86,7 +86,7 @@ brew install ack
 brew install tree
 
 # custom installations
-./install/ollama.sh
+./setup/launchagents/ollama.sh
 
 # Remove outdated versions from the cellar.
 brew cleanup

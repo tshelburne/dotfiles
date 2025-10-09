@@ -26,13 +26,24 @@ Alternatively, to update while avoiding the confirmation prompt:
 set -- -f; source bootstrap.sh
 ```
 
-### Shell Support
+### Repository Structure
 
-This repository is configured for **zsh**:
+This repository is organized into focused directories:
 
-- **Zsh configuration**: `.zprofile`, `.zshrc` (includes custom prompt and completions)
-- **Shared files**: `.aliases`, `.functions`, `.exports`, `.extra` (work with any POSIX shell)
-- **Legacy bash files**: Available in `legacy/` directory for reference
+```
+dotfiles/
+├── shell/          # Zsh configuration (.zshrc, .aliases, .functions, etc.)
+├── git/            # Git configuration and helpers
+├── config/         # Application configs (vim, editors, terminal, tools)
+├── scripts/        # Utility scripts (.osx, httpcompression, marks)
+├── setup/          # Package lists and LaunchAgent setup scripts
+├── legacy/         # Deprecated bash configs (for reference)
+├── docs/           # Documentation for each directory
+├── bootstrap.sh    # Installation script (creates symlinks)
+└── brew.sh         # Homebrew package installer
+```
+
+**See [`docs/structure.md`](docs/structure.md) for detailed documentation.**
 
 ### Git-free install
 
@@ -44,41 +55,44 @@ cd; curl -#L https://github.com/mathiasbynens/dotfiles/tarball/master | tar -xzv
 
 To update later on, just run that command again.
 
-### Specify the `$PATH`
+### Customization
 
-If `~/.path` exists, it will be sourced along with the other files, before any feature testing (such as [detecting which version of `ls` is being used](https://github.com/mathiasbynens/dotfiles/blob/aff769fd75225d8f2e481185a71d5e05b76002dc/.aliases#L21-26)) takes place.
+#### Private Settings (`~/.extra`)
 
-Here’s an example `~/.path` file that adds `/usr/local/bin` to the `$PATH`:
+Create `shell/.extra` for local settings you don't want to commit:
+
+```zsh
+# Git credentials
+GIT_AUTHOR_NAME="Your Name"
+git config --global user.name "$GIT_AUTHOR_NAME"
+GIT_AUTHOR_EMAIL="you@example.com"
+git config --global user.email "$GIT_AUTHOR_EMAIL"
+```
+
+#### Custom PATH (`~/.path`)
+
+If `~/.path` exists, it will be sourced to extend `$PATH`:
 
 ```zsh
 export PATH="/usr/local/bin:$PATH"
 ```
 
-### Add custom commands without creating a new fork
+#### Documentation
 
-If `~/.extra` exists, it will be sourced along with the other files. You can use this to add a few custom commands without the need to fork this entire repository, or to add commands you don’t want to commit to a public repository.
-
-My `~/.extra` looks something like this:
-
-```zsh
-# Git credentials
-# Not in the repository, to prevent people from accidentally committing under my name
-GIT_AUTHOR_NAME="Mathias Bynens"
-GIT_COMMITTER_NAME="$GIT_AUTHOR_NAME"
-git config --global user.name "$GIT_AUTHOR_NAME"
-GIT_AUTHOR_EMAIL="mathias@mailinator.com"
-GIT_COMMITTER_EMAIL="$GIT_AUTHOR_EMAIL"
-git config --global user.email "$GIT_AUTHOR_EMAIL"
-```
-
-You could also use `~/.extra` to override settings, functions and aliases from my dotfiles repository. It’s probably better to [fork this repository](https://github.com/mathiasbynens/dotfiles/fork) instead, though.
+See the `docs/` directory for detailed information:
+- [`shell.md`](docs/shell.md) - Shell configuration
+- [`git.md`](docs/git.md) - Git setup
+- [`config.md`](docs/config.md) - Application configs
+- [`scripts.md`](docs/scripts.md) - Utility scripts
+- [`setup.md`](docs/setup.md) - Installation & packages
+- [`structure.md`](docs/structure.md) - Repository organization
 
 ### Sensible OS X defaults
 
 When setting up a new Mac, you may want to set some sensible OS X defaults:
 
 ```zsh
-./.osx
+./scripts/.osx
 ```
 
 ### Install Homebrew formulae
