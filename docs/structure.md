@@ -13,12 +13,13 @@ dotfiles/
 │   └── tools/
 ├── scripts/        # Utility scripts
 ├── setup/          # Installation & setup
-│   ├── packages/
-│   └── launchagents/
+│   ├── brew/          # Homebrew installers by category
+│   ├── packages/      # Package manager lists + installer
+│   └── launchagents/  # Background service setup
 ├── legacy/         # Deprecated bash configs
 ├── docs/           # Documentation (you are here)
-├── bootstrap.sh    # Main installation script
-├── brew.sh         # Homebrew package installer
+├── bootstrap.sh    # Symlinks dotfiles to home directory
+├── setup.sh        # Main setup script (runs all installations)
 └── README.md
 ```
 
@@ -36,8 +37,10 @@ The `bootstrap.sh` script creates symlinks from this repo to your home directory
 - `config/` - App-specific settings grouped by category
 
 ### Setup Scripts
+- `setup.sh` - Main orchestrator: runs all installation scripts
 - `bootstrap.sh` - Creates all symlinks, sources zsh config
-- `brew.sh` - Installs Homebrew packages and tools
+- `setup/brew/*.sh` - Modular Homebrew installers by category
+- `setup/packages/install.sh` - Installs gems, npm packages, pip packages
 - `setup/launchagents/*.sh` - Sets up background services
 
 ## Adding New Files
@@ -54,8 +57,11 @@ Add to `scripts/` (make it executable with `chmod +x`).
 ### New package list
 Add to `setup/packages/` with appropriate extension.
 
+### New Homebrew package
+Add to appropriate script in `setup/brew/` or create a new category script.
+
 ### New LaunchAgent
-Create script in `setup/launchagents/`, call from `brew.sh` if needed.
+Create script in `setup/launchagents/`, it will be auto-discovered by `setup.sh`.
 
 ## Documentation
 Each major directory has a doc file:

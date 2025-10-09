@@ -1,7 +1,16 @@
-npm install -g gulp
-npm install -g bower
-npm install -g n
-npm install -g pulp
-npm install -g diff-so-fancy
+# Modern global npm packages
+# Install with: cat setup/packages/npm.txt | grep -v '^#' | xargs npm install -g
 
-n latest
+# Git diff tool
+diff-so-fancy
+
+# Package manager (faster alternative to npm)
+pnpm
+
+# TypeScript tooling (if needed)
+# typescript
+# ts-node
+
+# Linting/Formatting (if needed)
+# eslint
+# prettier
