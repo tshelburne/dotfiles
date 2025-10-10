@@ -16,13 +16,15 @@ for file in ~/.{path,exports,aliases,functions,extra}; do
 done
 unset file
 
-# Add directory marking (if it exists)
-[ -f ~/.marks/.functions ] && source ~/.marks/.functions
-
 # Git completion for zsh
 autoload -Uz compinit && compinit
+# Enable bash-style completion (for compatibility)
+autoload -Uz bashcompinit && bashcompinit
 # If you have git completion, enable it
 [ -f ~/.gitcompletion.zsh ] && source ~/.gitcompletion.zsh
+
+# Add directory marking (if it exists) - must be after compinit
+[ -f ~/.marks/.functions ] && source ~/.marks/.functions
 
 # Case-insensitive completion
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'

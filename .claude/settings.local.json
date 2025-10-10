@@ -1,7 +1,10 @@
 {
   "permissions": {
     "allow": [
-      "Bash(tree:*)"
+      "Bash(tree:*)",
+      "Read(//Users/timshelburne/.marks/**)",
+      "Bash(source:*)",
+      "Bash(complete:*)"
     ],
     "deny": [],
     "ask": []
