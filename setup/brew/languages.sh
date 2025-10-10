@@ -10,6 +10,7 @@ brew install python
 # Install volta (Fast Node.js version manager)
 # Note: volta is installed via Homebrew for easier management
 brew install volta
+volta install node@latest
 
 echo "✓ Programming languages installed"
 echo ""

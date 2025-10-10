@@ -25,10 +25,7 @@ setup/
 │   ├── security.sh    # CTF and security tools
 │   └── languages.sh   # Programming languages (Python, volta)
 ├── packages/       # Package manager dependencies
-│   ├── install.sh     # Installs all packages below
-│   ├── gems.txt       # Ruby gems to install
-│   ├── npm.txt        # npm global packages (via volta)
-│   └── pip.txt        # Python packages
+│   └── install.sh     # Installs gems, npm (via volta), and pip packages
 └── launchagents/   # macOS background services
     └── ollama.sh      # Ollama LaunchAgent setup
 ```
@@ -101,42 +98,22 @@ Volta automatically switches Node versions based on `package.json`. Add this to 
 
 When you `cd` into the directory, volta automatically uses those versions. No manual switching needed!
 
-## Package Lists
+## Package Installation
 
-Package lists are located in `setup/packages/` and are automatically installed by `setup.sh`.
+Package installations are defined inline in `setup/packages/install.sh` and are automatically run by `setup.sh`.
 
-You can also install them manually:
+You can also run them manually:
 
-### gems.txt
-Ruby gems to install globally:
-```zsh
-while read gem; do
-  [[ -z "$gem" || "$gem" =~ ^# ]] && continue
-  gem install "$gem"
-done < setup/packages/gems.txt
-```
-
-### npm.txt
-Global npm packages (install after setting up Node.js with volta):
-```zsh
-# Via volta (recommended - installs as managed tools)
-./setup/packages/install.sh
-
-# Or manually install each package
-volta install diff-so-fancy
-volta install pnpm
-```
-
-### pip.txt
-Python packages for virtualenv:
-```zsh
-pip install -r setup/packages/pip.txt
-```
-
-Or run them all at once:
 ```zsh
 ./setup/packages/install.sh
 ```
+
+This installs:
+- **Ruby gems**: bundler
+- **npm packages via volta**: diff-so-fancy, pnpm (and optionally typescript, ts-node, eslint, prettier)
+- **Python packages**: pip/setuptools upgrade, virtualenv
+
+To add new packages, edit [setup/packages/install.sh](setup/packages/install.sh) and add them to the appropriate section.
 
 ## LaunchAgents
 

@@ -42,11 +42,8 @@ dotfiles/
 │   │   ├── tools.sh       # Development tools
 │   │   ├── security.sh    # CTF and security tools
 │   │   └── languages.sh   # Programming languages (Python, volta)
-│   ├── packages/      # Package manager lists + installer
-│   │   ├── install.sh  # Auto-installs all packages below
-│   │   ├── gems.txt    # Ruby gems
-│   │   ├── npm.txt     # npm global packages
-│   │   └── pip.txt     # Python packages
+│   ├── packages/      # Package manager installer
+│   │   └── install.sh  # Installs gems, npm (via volta), and pip packages inline
 │   └── launchagents/  # macOS background service setup
 │       └── ollama.sh   # Example: Ollama LaunchAgent
 ├── legacy/         # Deprecated bash configs (for reference only)
@@ -91,12 +88,12 @@ dotfiles/
 - Per-project versions via `package.json` "volta" field (automatic switching)
 - Benefits: Faster (Rust-based), simpler setup, automatic version switching
 
-### Global Packages via volta (setup/packages/npm.txt)
+### Global Packages via volta (setup/packages/install.sh)
+- Packages defined inline in install.sh (no separate txt files)
 - Installed using `volta install <package>` (not `npm install -g`)
 - Volta manages these as versioned tools for better reproducibility
-- `diff-so-fancy` - Git diff tool
-- `pnpm` - Modern npm alternative
-- Optional (commented): typescript, ts-node, eslint, prettier
+- Active: diff-so-fancy (Git diff tool), pnpm (modern npm alternative)
+- Optional (commented out): typescript, ts-node, eslint, prettier
 
 ## Homebrew Package Categories
 
@@ -154,9 +151,10 @@ dotfiles/
 - No need to re-run bootstrap when editing these files (they're symlinked)
 
 ### Package Installation
-- `setup/packages/install.sh` checks for availability (npm might not exist yet)
+- `setup/packages/install.sh` has all packages defined inline (no separate txt files)
+- Checks for command availability (gem, volta, pip) before attempting installs
 - Provides helpful error messages if dependencies missing
-- Skips empty lines and comments in package lists
+- Easy to add/remove packages by editing the script directly
 
 ### Git Configuration
 - Uses native zsh git completion (`.gitcompletion.zsh`)
@@ -184,7 +182,7 @@ source bootstrap.sh # Symlinks dotfiles
 3. Commit the change
 
 ### Adding a New npm Package
-1. Add to `setup/packages/npm.txt`
+1. Edit `setup/packages/install.sh` and add to the `packages` array
 2. Run `./setup/packages/install.sh` or `volta install <package>`
 3. Commit the change
 
