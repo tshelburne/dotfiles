@@ -23,11 +23,11 @@ setup/
 │   ├── shell.sh       # zsh and shell tools
 │   ├── tools.sh       # Development tools
 │   ├── security.sh    # CTF and security tools
-│   └── languages.sh   # Programming languages (Python, nvm)
+│   └── languages.sh   # Programming languages (Python, volta)
 ├── packages/       # Package manager dependencies
 │   ├── install.sh     # Installs all packages below
 │   ├── gems.txt       # Ruby gems to install
-│   ├── npm.txt        # npm global packages
+│   ├── npm.txt        # npm global packages (via volta)
 │   └── pip.txt        # Python packages
 └── launchagents/   # macOS background services
     └── ollama.sh      # Ollama LaunchAgent setup
@@ -47,53 +47,59 @@ This modular approach makes it easy to:
 - Add new LaunchAgents by creating a new script in `setup/launchagents/`
 - Skip specific categories if needed
 
-## Node.js Setup with nvm
+## Node.js Setup with volta
 
-This setup uses **nvm (Node Version Manager)** to manage Node.js versions. This allows you to:
-- Switch between different Node.js versions per project
-- Install multiple versions side-by-side
-- Avoid permission issues with global packages
+This setup uses **volta** to manage Node.js versions. Volta is a fast, Rust-based version manager that:
+- Automatically switches versions per project (reads from `package.json`)
+- Installs multiple versions side-by-side
+- Provides instant version switching (no shell sourcing)
+- Avoids permission issues with global packages
 
 ### Installation
 
-After running `brew.sh`, nvm will be installed. To set up Node.js:
+After running `setup.sh`, volta will be installed. To set up Node.js:
 
 ```zsh
-# Install the latest LTS version
-nvm install --lts
+# Install the latest Node.js (LTS by default)
+volta install node
 
-# Set it as the default
-nvm alias default lts/*
+# Install a specific version
+volta install node@20
 
 # Verify installation
 node --version
 npm --version
 ```
 
-### Using nvm
+### Using volta
 
 ```zsh
-# List available versions
-nvm ls-remote
+# Install global packages as volta-managed tools
+volta install pnpm
+volta install typescript
 
-# Install a specific version
-nvm install 20.10.0
+# Check which version is active
+volta list
 
-# Switch to a version
-nvm use 20
-
-# Check current version
-nvm current
+# Pin a version to a project (adds to package.json)
+cd my-project
+volta pin node@20
 ```
 
 ### Per-Project Node Versions
 
-Create a `.nvmrc` file in your project:
-```
-20.10.0
+Volta automatically switches Node versions based on `package.json`. Add this to your project:
+
+```json
+{
+  "volta": {
+    "node": "20.10.0",
+    "npm": "10.2.3"
+  }
+}
 ```
 
-Then run `nvm use` in that directory to automatically switch versions.
+When you `cd` into the directory, volta automatically uses those versions. No manual switching needed!
 
 ## Package Lists
 
@@ -111,9 +117,14 @@ done < setup/packages/gems.txt
 ```
 
 ### npm.txt
-Global npm packages (install after setting up Node.js with nvm):
+Global npm packages (install after setting up Node.js with volta):
 ```zsh
-cat setup/packages/npm.txt | grep -v '^#' | grep -v '^$' | xargs npm install -g
+# Via volta (recommended - installs as managed tools)
+./setup/packages/install.sh
+
+# Or manually install each package
+volta install diff-so-fancy
+volta install pnpm
 ```
 
 ### pip.txt

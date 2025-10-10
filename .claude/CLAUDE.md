@@ -41,7 +41,7 @@ dotfiles/
 │   │   ├── shell.sh       # zsh and shell tools
 │   │   ├── tools.sh       # Development tools
 │   │   ├── security.sh    # CTF and security tools
-│   │   └── languages.sh   # Programming languages (Python, nvm)
+│   │   └── languages.sh   # Programming languages (Python, volta)
 │   ├── packages/      # Package manager lists + installer
 │   │   ├── install.sh  # Auto-installs all packages below
 │   │   ├── gems.txt    # Ruby gems
@@ -64,7 +64,7 @@ dotfiles/
 ## Shell Configuration
 
 ### .zshrc (shell/.zshrc)
-- Loads nvm from Homebrew location (`/opt/homebrew/opt/nvm/nvm.sh`)
+- Sets up volta for Node.js version management (`$VOLTA_HOME/bin` in PATH)
 - Sources dotfiles: `.path`, `.exports`, `.aliases`, `.functions`, `.extra`
 - Git completion for zsh (native, not bash-to-zsh bridge)
 - Custom prompt with git status indicators
@@ -84,13 +84,16 @@ dotfiles/
 
 ## Node.js & Package Management
 
-### nvm (Node Version Manager)
-- Installed via **Homebrew** (not curl script)
-- Location: `/opt/homebrew/opt/nvm/`
-- After setup.sh, run: `nvm install --lts && nvm alias default lts/*`
-- Per-project versions via `.nvmrc` files
+### volta (Fast Node.js Version Manager)
+- Installed via **Homebrew**
+- Location: `~/.volta/`
+- After setup.sh, run: `volta install node`
+- Per-project versions via `package.json` "volta" field (automatic switching)
+- Benefits: Faster (Rust-based), simpler setup, automatic version switching
 
-### npm Global Packages (setup/packages/npm.txt)
+### Global Packages via volta (setup/packages/npm.txt)
+- Installed using `volta install <package>` (not `npm install -g`)
+- Volta manages these as versioned tools for better reproducibility
 - `diff-so-fancy` - Git diff tool
 - `pnpm` - Modern npm alternative
 - Optional (commented): typescript, ts-node, eslint, prettier
@@ -114,8 +117,7 @@ dotfiles/
 
 ### setup/brew/languages.sh
 - Python
-- nvm (Node Version Manager)
-- Creates `~/.nvm` directory
+- volta (Fast Node.js version manager)
 
 ## Adding New Components
 
@@ -183,7 +185,7 @@ source bootstrap.sh # Symlinks dotfiles
 
 ### Adding a New npm Package
 1. Add to `setup/packages/npm.txt`
-2. Run `./setup/packages/install.sh` or `npm install -g <package>`
+2. Run `./setup/packages/install.sh` or `volta install <package>`
 3. Commit the change
 
 ### Updating Existing Configs
@@ -199,9 +201,9 @@ source bootstrap.sh # Symlinks dotfiles
 - Update or remove from appropriate `setup/brew/*.sh` file
 
 ### npm packages fail to install
-- Ensure Node.js installed: `nvm install --lts`
-- Set default: `nvm alias default lts/*`
+- Ensure Node.js installed: `volta install node`
 - Restart shell or: `source ~/.zshrc`
+- Verify volta is in PATH: `which volta`
 
 ### Symlinks not working
 - Re-run: `source bootstrap.sh`

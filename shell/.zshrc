@@ -4,17 +4,9 @@ export PATH="$HOME/.npm-packages/bin:$HOME/.bin:$HOME/.local/bin:/usr/local/bin:
 # PostgreSQL path (from bashrc)
 export PATH="/opt/homebrew/opt/postgresql@15/bin:$PATH"
 
-# nvm setup (Node Version Manager)
-export NVM_DIR="$HOME/.nvm"
-
-# Load nvm (installed via Homebrew)
-[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && . "/opt/homebrew/opt/nvm/nvm.sh"
-# Load nvm bash completion
-[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && . "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"
-
-# Alternative: if nvm was installed via install script instead of Homebrew
-# [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
-# [ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"
+# volta setup (Fast Node.js version manager)
+export VOLTA_HOME="$HOME/.volta"
+export PATH="$VOLTA_HOME/bin:$PATH"
 
 # Load the shell dotfiles, and then some:
 # * ~/.path can be used to extend `$PATH`.

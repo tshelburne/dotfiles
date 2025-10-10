@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Install packages from package manager lists
-# Requires: Ruby, Node.js (via nvm), Python to be installed first
+# Requires: Ruby, Node.js (via volta), Python to be installed first
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
@@ -18,17 +18,22 @@ if [ -f "$SCRIPT_DIR/gems.txt" ]; then
     echo "✓ Ruby gems installed"
 fi
 
-# Install npm global packages
+# Install npm global packages using volta
 if [ -f "$SCRIPT_DIR/npm.txt" ]; then
-    echo "Installing npm global packages..."
-    # Check if npm is available
-    if command -v npm >/dev/null 2>&1; then
-        cat "$SCRIPT_DIR/npm.txt" | grep -v '^#' | grep -v '^$' | xargs npm install -g
-        echo "✓ npm packages installed"
+    echo "Installing npm global packages with volta..."
+    # Check if volta is available
+    if command -v volta >/dev/null 2>&1; then
+        # Use volta to install each package as a tool (better than npm install -g)
+        while IFS= read -r package; do
+            # Skip empty lines and comments
+            [[ -z "$package" || "$package" =~ ^# ]] && continue
+            echo "Installing $package..."
+            volta install "$package"
+        done < <(grep -v '^#' "$SCRIPT_DIR/npm.txt" | grep -v '^$')
+        echo "✓ npm packages installed via volta"
     else
-        echo "⚠ npm not found. Install Node.js first:"
-        echo "  nvm install --lts"
-        echo "  nvm alias default lts/*"
+        echo "⚠ volta not found. Install Node.js first:"
+        echo "  volta install node"
     fi
 fi
 

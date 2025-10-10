@@ -1,5 +1,6 @@
 # Modern global npm packages
-# Install with: cat setup/packages/npm.txt | grep -v '^#' | xargs npm install -g
+# Install with volta: volta install <package>
+# Or use: ./setup/packages/install.sh
 
 # Git diff tool
 diff-so-fancy
