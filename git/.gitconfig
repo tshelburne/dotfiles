@@ -185,3 +185,6 @@
 [url "git://gist.github.com/"]
 
 	insteadOf = "gist:"
+[user]
+	name = Tim Shelburne
+	email = shelburt02@gmail.com

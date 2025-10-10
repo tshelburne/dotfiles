@@ -28,6 +28,8 @@ cat > "$PLIST" <<'EOF'
   <dict>
     <key>OLLAMA_HOST</key>
     <string>127.0.0.1:11434</string>
+    <key>OLLAMA_ORIGINS</key>
+    <string>*</string>
   </dict>
   <key>RunAtLoad</key>
   <true/>
@@ -45,4 +47,4 @@ launchctl kickstart -k gui/$(id -u)/com.ollama.ollama
 
 echo "✅ Ollama is set to auto-start and stay alive under your user account."
 echo "📍 Ollama is listening on localhost:11434"
-echo "💡 Use Caddy proxy at localhost:8787 for CORS-enabled access (Chrome extensions, etc.)"
+echo "🌐 CORS enabled for all origins (Chrome extensions can access directly)"
