@@ -189,3 +189,6 @@
 [user]
 	name = Tim Shelburne
 	email = shelburt02@gmail.com
+
+[include]
+	path = ~/.gitconfig.local
