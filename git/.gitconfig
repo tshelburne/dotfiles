@@ -16,6 +16,8 @@
 	reb = rebase
 	rebi = "!r() { git rebase -i HEAD~$1; }; r"
 
+	forall = "!f() { git submodule foreach \"$*\"; }; f"
+
 	l = "!source ~/.githelpers && pretty_git_log"
 
 	# View abbreviated SHA, description, and history graph of the latest 20 commits
@@ -44,7 +46,7 @@
 
 	# Switch to a branch, creating it if necessary
 	go = "!f() { git checkout -b \"$1\" 2> /dev/null || git checkout \"$1\"; }; f"
-    goall = "!f() { b=${1:-$(git rev-parse --abbrev-ref HEAD)}; git checkout \"$b\" && git submodule foreach \"git checkout -B $b\"; }; f"
+    goall = "!f() { b=${1:-$(git rev-parse --abbrev-ref HEAD)}; git checkout \"$b\" && git forall \"git checkout -B $b\"; }; f"
 
 	# Show verbose output about tags, branches or remotes
 	tags = tag -l
