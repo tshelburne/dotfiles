@@ -1,0 +1,43 @@
+{
+  "additionalDirectories": [],
+  "alwaysThinkingEnabled": true,
+  "defaultMode": "acceptAll",
+  "permissions": {
+    "allow": [
+      "Read(./**)",
+      "Edit(./**)",
+      "Create(./**)",
+      "Write(./**)",
+      "Bash(pnpm:*)",
+      "Bash(node:*)",
+      "Bash(tsc:*)",
+      "Bash(git:*)",
+      "Bash(npx:*)",
+      "Bash(ls:*)",
+      "Bash(cat:*)",
+      "Bash(cp:*)",
+      "Bash(mv:*)",
+      "Bash(rm -rf ./*)",
+      "Bash(find:*)",
+      "Bash(open:*)"
+    ],
+    "ask": [
+      "Bash(sudo:*)",
+      "Bash(curl:*)",
+      "Bash(wget:*)",
+      "Bash(apt-get:*)",
+      "Bash(brew:*)",
+      "Bash(pnpm dlx:*)"
+    ],
+    "deny": [
+      "Write(/)",
+      "Edit(/)",
+      "Read(/etc/**)",
+      "Bash(rm -rf /*)",
+      "Bash(shutdown:*)",
+      "WebFetch(*)",
+      "Read(./.env)",
+      "Read(./**/secrets/**)"
+    ]
+  }
+}

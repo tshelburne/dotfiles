@@ -25,7 +25,7 @@ setup/
 │   ├── security.sh    # CTF and security tools
 │   └── languages.sh   # Programming languages (Python, volta)
 ├── packages/       # Package manager dependencies
-│   └── install.sh     # Installs gems, npm (via volta), and pip packages
+│   └── install.sh     # Installs gems, volta packages (pnpm, diff-so-fancy, claude-code), and pip packages
 └── launchagents/   # macOS background services
     └── ollama.sh      # Ollama LaunchAgent setup
 ```
@@ -110,7 +110,7 @@ You can also run them manually:
 
 This installs:
 - **Ruby gems**: bundler
-- **npm packages via volta**: diff-so-fancy, pnpm (and optionally typescript, ts-node, eslint, prettier)
+- **npm packages via volta**: diff-so-fancy, pnpm, @anthropic-ai/claude-code
 - **Python packages**: pip/setuptools upgrade, virtualenv
 
 To add new packages, edit [setup/packages/install.sh](setup/packages/install.sh) and add them to the appropriate section.

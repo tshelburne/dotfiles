@@ -43,6 +43,9 @@ function doIt() {
 	ln -sf "$DOTFILES_DIR/config/tools/.hgignore" ~/.hgignore
 	ln -sf "$DOTFILES_DIR/config/tools/.gdbinit" ~/.gdbinit
 
+	# Claude configuration
+	ln -sf "$DOTFILES_DIR/config/claude" ~/.claude
+
 	# Directory marking functions
 	mkdir -p ~/.marks
 	ln -sf "$DOTFILES_DIR/scripts/marks/.functions" ~/.marks/.functions

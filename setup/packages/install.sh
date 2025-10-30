@@ -21,6 +21,7 @@ if command -v volta >/dev/null 2>&1; then
     # List of packages to install
     volta install diff-so-fancy
     volta install pnpm
+    volta install @anthropic-ai/claude-code
 
     echo "✓ npm packages installed via volta"
 else
