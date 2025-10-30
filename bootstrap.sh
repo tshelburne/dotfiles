@@ -44,7 +44,18 @@ function doIt() {
 	ln -sf "$DOTFILES_DIR/config/tools/.gdbinit" ~/.gdbinit
 
 	# Claude configuration
-	ln -sf "$DOTFILES_DIR/config/claude" ~/.claude
+	mkdir -p ~/.claude
+	ln -sf "$DOTFILES_DIR/config/claude/CLAUDE.md" ~/.claude/CLAUDE.md
+	ln -sf "$DOTFILES_DIR/config/claude/code-style.md" ~/.claude/code-style.md
+	ln -sf "$DOTFILES_DIR/config/claude/settings.json" ~/.claude/settings.json
+
+	# Claude commands directory
+	mkdir -p ~/.claude/commands
+	if [ -d "$DOTFILES_DIR/config/claude/commands" ]; then
+		for cmd in "$DOTFILES_DIR/config/claude/commands"/*; do
+			[ -f "$cmd" ] && ln -sf "$cmd" ~/.claude/commands/
+		done
+	fi
 
 	# Directory marking functions
 	mkdir -p ~/.marks
