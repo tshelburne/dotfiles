@@ -23,6 +23,9 @@ if command -v volta >/dev/null 2>&1; then
     volta install pnpm
     volta install @anthropic-ai/claude-code
 
+    # CLI-based claude setup
+    claude mcp add --scope user --transport stdio browser npx @agent-infra/mcp-server-browser@latest 
+
     echo "✓ npm packages installed via volta"
 else
     echo "⚠ volta not found. Install Node.js first:"
