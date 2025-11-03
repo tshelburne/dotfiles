@@ -40,7 +40,7 @@ The `bootstrap.sh` script creates symlinks from this repo to your home directory
 - `setup.sh` - Main orchestrator: runs all installation scripts
 - `bootstrap.sh` - Creates all symlinks, sources zsh config
 - `setup/brew/*.sh` - Modular Homebrew installers by category
-- `setup/packages/install.sh` - Installs gems, npm packages, pip packages
+- `setup/packages/install.sh` - Installs gems, npm packages (via volta), Python tools (via uv)
 - `setup/launchagents/*.sh` - Sets up background services
 
 ## Adding New Files

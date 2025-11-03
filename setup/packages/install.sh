@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-# Install packages via Ruby gems, volta (Node.js), and pip (Python)
-# Requires: Ruby, Node.js (via volta), Python to be installed first
+# Install packages via Ruby gems, volta (Node.js), and uv (Python)
+# Requires: Ruby, Node.js (via volta), uv to be installed first
 
 echo "Installing package manager packages..."
 
@@ -32,14 +32,23 @@ else
     echo "  volta install node"
 fi
 
-# Install Python packages
-if command -v pip >/dev/null 2>&1; then
-    echo "Installing Python packages..."
-    pip install --upgrade pip setuptools
-    pip install virtualenv
-    echo "✓ Python packages installed"
+# Install Python tools using uv
+if command -v uv >/dev/null 2>&1; then
+    echo "Installing Python tools with uv..."
+
+    # Install global tools (equivalent to pipx/global pip installs)
+    uv tool install claude-monitor
+
+    # Additional tools you might want:
+    # uv tool install virtualenv
+    # uv tool install black
+    # uv tool install ruff
+    # uv tool install mypy
+
+    echo "✓ Python tools installed via uv"
 else
-    echo "⚠ pip not found, skipping Python packages"
+    echo "⚠ uv not found. Install uv first:"
+    echo "  brew install uv"
 fi
 
 echo "✓ All package installations complete"

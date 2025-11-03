@@ -41,9 +41,9 @@ dotfiles/
 │   │   ├── shell.sh       # zsh and shell tools
 │   │   ├── tools.sh       # Development tools
 │   │   ├── security.sh    # CTF and security tools
-│   │   └── languages.sh   # Programming languages (Python, volta)
+│   │   └── languages.sh   # Programming languages (uv, volta)
 │   ├── packages/      # Package manager installer
-│   │   └── install.sh  # Installs gems, npm (via volta), and pip packages inline
+│   │   └── install.sh  # Installs gems, npm (via volta), and uv tools inline
 │   └── launchagents/  # macOS background service setup
 │       └── ollama.sh   # Example: Ollama LaunchAgent
 ├── legacy/         # Deprecated bash configs (for reference only)
@@ -79,6 +79,27 @@ dotfiles/
 - `.path` - Custom PATH additions (user can create `~/.path` for local overrides)
 - `.extra` - Private settings (not committed, for git credentials, API keys, etc.)
 
+## Python & Package Management
+
+### uv (Fast Python Package & Version Manager)
+- Installed via **Homebrew** in `setup/brew/languages.sh`
+- Python 3.12 automatically installed via `uv python install 3.12` (similar to volta installing node)
+- Location: Tools in `~/.local/bin` (already in PATH)
+- Per-project dependencies via `pyproject.toml` (automatic venv management)
+- Benefits: 10-100x faster than pip (Rust-based), manages Python versions, unified tool
+- Commands:
+  - `uv python install 3.12` - Install Python version
+  - `uv tool install <package>` - Install global CLI tools (like pipx)
+  - `uv pip install <package>` - Install packages in project venv
+  - `uv venv` - Create virtual environment
+
+### Global Tools via uv (setup/packages/install.sh)
+- Tools defined inline in install.sh (no separate txt files)
+- Installed using `uv tool install <package>` (like volta for Python)
+- Tools available globally as CLI commands
+- Active: claude-monitor (Claude API usage monitoring)
+- Example tools you might add: virtualenv, black, ruff, mypy
+
 ## Node.js & Package Management
 
 ### volta (Fast Node.js Version Manager)
@@ -113,7 +134,7 @@ dotfiles/
 - Examples: aircrack-ng, nmap, hydra, john, sqlmap
 
 ### setup/brew/languages.sh
-- Python
+- uv (Fast Python package & version manager)
 - volta (Fast Node.js version manager)
 
 ## Adding New Components
@@ -152,7 +173,7 @@ dotfiles/
 
 ### Package Installation
 - `setup/packages/install.sh` has all packages defined inline (no separate txt files)
-- Checks for command availability (gem, volta, pip) before attempting installs
+- Checks for command availability (gem, volta, uv) before attempting installs
 - Provides helpful error messages if dependencies missing
 - Easy to add/remove packages by editing the script directly
 

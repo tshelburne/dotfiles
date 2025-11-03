@@ -41,7 +41,7 @@ dotfiles/
 ├── scripts/        # Utility scripts (.osx, httpcompression, marks)
 ├── setup/          # Modular installation scripts
 │   ├── brew/          # Homebrew package installers by category
-│   ├── packages/      # Package manager lists (gems, npm, pip)
+│   ├── packages/      # Package manager lists (gems, npm via volta, uv tools)
 │   └── launchagents/  # macOS background service setup
 ├── legacy/         # Deprecated bash configs (for reference)
 ├── docs/           # Documentation for each directory
@@ -112,7 +112,7 @@ When setting up a new Mac, run the main setup script to install all Homebrew pac
 This will automatically install everything from:
 - `setup/brew/*.sh` - Homebrew packages (coreutils, shell tools, dev tools, security tools, languages)
 - `setup/launchagents/*.sh` - Background services
-- `setup/packages/install.sh` - Ruby gems, npm packages, Python packages
+- `setup/packages/install.sh` - Ruby gems, npm packages (via volta), Python tools (via uv)
 
 ## Feedback
 

@@ -4,8 +4,9 @@
 
 echo "Installing programming languages..."
 
-# Install Python
-brew install python
+# Install uv (Fast Python package and version manager)
+brew install uv
+uv python install 3.12
 
 # Install volta (Fast Node.js version manager)
 # Note: volta is installed via Homebrew for easier management
@@ -14,7 +15,8 @@ volta install node@latest
 
 echo "✓ Programming languages installed"
 echo ""
-echo "Next steps for Node.js:"
-echo "  1. Restart your shell or run: source ~/.zshrc"
-echo "  2. Install Node.js: volta install node"
-echo "  3. (Optional) Install specific version: volta install node@20"
+echo "Python 3.12 and Node.js (latest) have been installed"
+echo ""
+echo "Optional next steps:"
+echo "  - Install other Python versions: uv python install 3.11"
+echo "  - Install specific Node.js version: volta install node@20"

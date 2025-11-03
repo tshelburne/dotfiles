@@ -23,9 +23,9 @@ setup/
 │   ├── shell.sh       # zsh and shell tools
 │   ├── tools.sh       # Development tools
 │   ├── security.sh    # CTF and security tools
-│   └── languages.sh   # Programming languages (Python, volta)
+│   └── languages.sh   # Programming languages (uv, volta)
 ├── packages/       # Package manager dependencies
-│   └── install.sh     # Installs gems, volta packages (pnpm, diff-so-fancy, claude-code), and pip packages
+│   └── install.sh     # Installs gems, volta packages (pnpm, diff-so-fancy, claude-code), and uv tools (claude-monitor)
 └── launchagents/   # macOS background services
     └── ollama.sh      # Ollama LaunchAgent setup
 ```
@@ -37,7 +37,7 @@ The `setup.sh` script orchestrates all installations:
 1. Installs/updates Homebrew
 2. Runs all scripts in `setup/brew/`
 3. Runs all scripts in `setup/launchagents/`
-4. Runs `setup/packages/install.sh` to install gems, npm packages, and pip packages
+4. Runs `setup/packages/install.sh` to install gems, npm packages (via volta), and Python tools (via uv)
 
 This modular approach makes it easy to:
 - Add new Homebrew packages by creating a new script in `setup/brew/`
@@ -98,6 +98,64 @@ Volta automatically switches Node versions based on `package.json`. Add this to 
 
 When you `cd` into the directory, volta automatically uses those versions. No manual switching needed!
 
+## Python Setup with uv
+
+This setup uses **uv** to manage Python versions and packages. uv is a fast, Rust-based package manager that:
+- Manages Python versions (like pyenv)
+- Installs packages 10-100x faster than pip
+- Provides unified tool for venvs, dependencies, and global tools
+- Drop-in replacement for pip, virtualenv, and pipx
+
+### Installation
+
+After running `setup.sh`, uv will be installed and Python 3.12 will be automatically installed:
+
+```zsh
+# Verify installation
+python --version
+uv --version
+
+# Install additional Python versions
+uv python install 3.11
+uv python list
+```
+
+### Using uv
+
+```zsh
+# Install global CLI tools (like pipx)
+uv tool install claude-monitor
+uv tool install black
+uv tool install ruff
+
+# Create and use virtual environments
+cd my-project
+uv venv
+source .venv/bin/activate
+
+# Install packages (faster than pip)
+uv pip install requests flask
+
+# List installed tools
+uv tool list
+```
+
+### Per-Project Python Management
+
+uv automatically manages virtual environments and dependencies via `pyproject.toml`:
+
+```toml
+[project]
+name = "my-project"
+requires-python = ">=3.12"
+dependencies = [
+    "requests>=2.31.0",
+    "flask>=3.0.0",
+]
+```
+
+Then use `uv pip install -e .` to install dependencies. uv handles the venv automatically!
+
 ## Package Installation
 
 Package installations are defined inline in `setup/packages/install.sh` and are automatically run by `setup.sh`.
@@ -111,7 +169,7 @@ You can also run them manually:
 This installs:
 - **Ruby gems**: bundler
 - **npm packages via volta**: diff-so-fancy, pnpm, @anthropic-ai/claude-code
-- **Python packages**: pip/setuptools upgrade, virtualenv
+- **Python tools via uv**: claude-monitor
 
 To add new packages, edit [setup/packages/install.sh](setup/packages/install.sh) and add them to the appropriate section.
 
