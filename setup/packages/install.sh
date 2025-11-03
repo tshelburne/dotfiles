@@ -24,8 +24,7 @@ if command -v volta >/dev/null 2>&1; then
     volta install @anthropic-ai/claude-code
 
     # CLI-based claude setup
-    claude mcp add --scope user --transport stdio browser npx @agent-infra/mcp-server-browser@latest 
-    claude mcp add --scope user --transport stdio headless "uvx browser-use --mcp"
+    claude mcp add --scope user --transport stdio playwright "npx @playwright/mcp@latest --headless"
 
     echo "✓ npm packages installed via volta"
 else
