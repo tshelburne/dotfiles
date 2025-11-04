@@ -6,6 +6,16 @@
 # Get the directory where this script is located
 DOTFILES_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
+# Source environment variables if .env exists
+if [ -f "$DOTFILES_DIR/.env" ]; then
+    echo "Loading environment variables from .env..."
+    set -a  # Export all variables
+    source "$DOTFILES_DIR/.env"
+    set +a  # Stop exporting
+    echo "Environment variables loaded."
+    echo ""
+fi
+
 echo "================================"
 echo "macOS dotfiles setup"
 echo "================================"

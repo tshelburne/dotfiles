@@ -2,6 +2,14 @@
 
 cd "$(dirname "${BASH_SOURCE}")";
 
+# Source environment variables if .env exists
+if [ -f ".env" ]; then
+    echo "Loading environment variables from .env..."
+    set -a  # Export all variables
+    source ".env"
+    set +a  # Stop exporting
+fi
+
 git pull origin master;
 
 function doIt() {

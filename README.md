@@ -13,6 +13,7 @@ You can clone the repository wherever you want. (I like to keep it in `~/Project
 ```zsh
 git clone https://github.com/tshelburne/dotfiles.git
 cd dotfiles
+cp .env.example .env # and then update the file
 ./setup.sh
 source bootstrap.sh
 ```

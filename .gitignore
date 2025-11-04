@@ -1,0 +1,14 @@
+# Environment variables (contains secrets)
+.env
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Editor directories and files
+.vscode/*
+.idea
+*.swp
+*.swo
+*~
