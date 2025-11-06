@@ -25,6 +25,7 @@ if command -v volta >/dev/null 2>&1; then
 
     # CLI-based claude setup
     claude mcp add --scope user --transport stdio playwright "npx @playwright/mcp@latest --headless"
+    claude mcp add --scope user --transport http figma-remote-mcp https://mcp.figma.com/mcp
 
     echo "✓ npm packages installed via volta"
 else
