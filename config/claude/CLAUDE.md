@@ -1,5 +1,29 @@
 # Global Claude Code Configuration
 
+## Feature Documentation
+
+Features follow a stepwise workflow in `.claude/features/YYMMDD-feature-name/`:
+
+1. **Scope** (`/scope` command) - Interactive scoping session creates `scope.md` with problem statement, goals, approach, success criteria
+2. **Spec** - Once scope is agreed, write `spec.md` with technical architecture, code patterns, usage examples
+3. **Implement** - Build the feature and document in `completed.md` (what was built, files changed, key decisions)
+
+**Important**: Do not auto-generate all three files at once. This is an interactive process requiring user approval between each step.
+
+User-facing READMEs should stay concise and practical. Feature docs in `.claude/features/` preserve implementation details for AI context.
+
+## Testing
+
+### Node / Typescript
+
+- Use native Node.js test runner (`node:test`) - no external frameworks
+- Use tsx for TypeScript - run with `--import tsx`
+- Collocate tests - `foo.test.ts` next to `foo.ts`
+- Test script pattern - `"test": "node --import tsx --test 'src/**/*.test.ts'"`
+- Import with `.js` extension - `import { foo } from './bar.js'` (ESM requirement)
+- Write tests for critical logic - utilities, security-sensitive code, complex algorithms
+- Skip tests for UI components, trivial code, one-off scripts (unless requested)
+
 ## Code Style
 
 ### Philosophy
@@ -9,8 +33,9 @@ Structure should read top-down like a story: main logic first, helpers last.
 
 ### Structure & Layout
 
-- Main logic at the top — helpers hoisted to the bottom of the file.
+- Main logic at the top — helpers hoisted from the bottom of the file.
   - In React: callbacks come *after* the `return`.
+  - In normal modules: support functions, local type definitions after the primary exports
 - Imports sorted alphabetically, with:
   1. External / library imports first
   2. Relative imports second
