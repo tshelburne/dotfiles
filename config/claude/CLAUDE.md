@@ -36,6 +36,7 @@ Structure should read top-down like a story: main logic first, helpers last.
 - Main logic at the top — helpers hoisted from the bottom of the file.
   - In React: callbacks come *after* the `return`.
   - In normal modules: support functions, local type definitions after the primary exports
+- Maximize locality — define at the narrowest scope where used. Don't hoist schemas, constants, or helpers to module level unless shared across multiple functions.
 - Imports sorted alphabetically, with:
   1. External / library imports first
   2. Relative imports second
@@ -58,7 +59,7 @@ Structure should read top-down like a story: main logic first, helpers last.
 - Use function declarations for reusable logic.
 - Use arrow functions for inline callbacks (`map`, `filter`, `reduce`, etc.).
 - Prefer composable functions (FP style) over big "behavior chunks."
-- Keep functions short (~15–20 lines max).
+- Keep functions short (~15–20 lines is best), but extract "helper" functions only for clarity or when they are reusable. Two short but intimately related functions doing one job is worse that one long function.
 - **React components must be defined with `function Component()` syntax, never `const Component = ()`**
 - Naming:
   - React callbacks: **ALWAYS `onSomething`, NEVER `handleSomething`**
@@ -191,6 +192,34 @@ function buildGreeting(user: User) {
 }
 ```
 
+#### Maximize Locality
+
+```ts
+// Bad: hoisted when used once
+const UserSchema = z.object({ name: z.string() })
+
+export function validateUser(data: unknown) {
+  return UserSchema.parse(data)
+}
+
+// Good: defined at narrowest scope
+export function validateUser(data: unknown) {
+  const UserSchema = z.object({ name: z.string() })
+  return UserSchema.parse(data)
+}
+
+// Exception: hoist when shared
+const UserSchema = z.object({ name: z.string() })
+
+export function validateUser(data: unknown) {
+  return UserSchema.parse(data)
+}
+
+export function createUser(data: unknown) {
+  return UserSchema.parse(data)
+}
+```
+
 ### Do / Don't
 
 | Do | Don't |
@@ -204,6 +233,7 @@ function buildGreeting(user: User) {
 | Inline ternaries for simple cases | Verbose `if`/`else` chains |
 | Composable helpers | Giant procedural blocks |
 | Extract helpers locally first | Premature abstraction |
+| Define at narrowest scope | Hoist to module level unnecessarily |
 
 ## Project Context
 This is a personal configuration that should be applied across all projects unless overridden by project-specific CLAUDE.md files.
