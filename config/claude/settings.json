@@ -29,9 +29,18 @@
       "Bash(cat:*)",
       "Bash(cp:*)",
       "Bash(mv:*)",
-      "Bash(rm -rf ./*)",
+      "Bash(rm:*)",
       "Bash(find:*)",
-      "Bash(open:*)"
+      "Bash(open:*)",
+      "Bash(mkdir:*)",
+      "Bash(chmod:*)",
+      "Bash(which:*)",
+      "Bash(command:*)",
+      "Bash(echo:*)",
+      "Bash(diff:*)",
+      "Bash(wc:*)",
+      "Bash(dirname:*)",
+      "Bash(basename:*)"
     ],
     "ask": [
       "Bash(sudo:*)",
@@ -39,7 +48,8 @@
       "Bash(wget:*)",
       "Bash(apt-get:*)",
       "Bash(brew:*)",
-      "Bash(pnpm dlx:*)"
+      "Bash(pnpm dlx:*)",
+      "Read(./.env)"
     ],
     "deny": [
       "Write(/)",
@@ -47,7 +57,6 @@
       "Read(/etc/**)",
       "Bash(rm -rf /*)",
       "Bash(shutdown:*)",
-      "Read(./.env)",
       "Read(./**/secrets/**)"
     ]
   }
