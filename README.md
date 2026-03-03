@@ -56,7 +56,7 @@ dotfiles/
 To install these dotfiles without Git:
 
 ```bash
-cd; curl -#L https://github.com/tshelburne/dotfiles/tarball/master | tar -xzv --strip-components 1 --exclude={README.md,bootstrap.sh,LICENSE-MIT.txt}
+cd; curl -#L https://github.com/tshelburne/dotfiles/tarball/main | tar -xzv --strip-components 1 --exclude={README.md,bootstrap.sh,LICENSE-MIT.txt}
 ```
 
 To update later on, just run that command again.
