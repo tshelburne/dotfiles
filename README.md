@@ -2,7 +2,7 @@
 
 ![Screenshot of my shell prompt](http://i.imgur.com/EkEtphC.png)
 
-**Note:** This dotfiles setup is optimized for **zsh** (the default shell on macOS since Catalina). Legacy bash configuration files are available in the `legacy/` directory if needed.
+**Note:** This dotfiles setup is optimized for **zsh** (the default shell on macOS since Catalina).
 
 ## Installation
 
@@ -44,7 +44,6 @@ dotfiles/
 │   ├── brew/          # Homebrew package installers by category
 │   ├── packages/      # Package manager lists (gems, npm via volta, uv tools)
 │   └── launchagents/  # macOS background service setup
-├── legacy/         # Deprecated bash configs (for reference)
 ├── docs/           # Documentation for each directory
 ├── bootstrap.sh    # Symlinks dotfiles to home directory
 └── setup.sh        # Main setup script (runs all installations)

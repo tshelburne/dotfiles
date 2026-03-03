@@ -8,15 +8,14 @@ dotfiles/
 ├── git/            # Git configuration
 ├── config/         # Application configs
 │   ├── vim/
-│   ├── editors/
 │   ├── terminal/
-│   └── tools/
+│   ├── tools/
+│   └── claude/
 ├── scripts/        # Utility scripts
 ├── setup/          # Installation & setup
 │   ├── brew/          # Homebrew installers by category
 │   ├── packages/      # Package manager lists + installer
 │   └── launchagents/  # Background service setup
-├── legacy/         # Deprecated bash configs
 ├── docs/           # Documentation (you are here)
 ├── bootstrap.sh    # Symlinks dotfiles to home directory
 ├── setup.sh        # Main setup script (runs all installations)

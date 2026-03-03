@@ -46,7 +46,6 @@ dotfiles/
 │   │   └── install.sh  # Installs gems, npm (via volta), and uv tools inline
 │   └── launchagents/  # macOS background service setup
 │       └── ollama.sh   # Example: Ollama LaunchAgent
-├── legacy/         # Deprecated bash configs (for reference only)
 ├── docs/           # Documentation files
 │   ├── shell.md
 │   ├── git.md
