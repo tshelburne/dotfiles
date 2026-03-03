@@ -745,14 +745,6 @@ defaults write com.irradiatedsoftware.SizeUp StartAtLogin -bool true
 defaults write com.irradiatedsoftware.SizeUp ShowPrefsOnNextStart -bool false
 
 ###############################################################################
-# Sublime Text                                                                #
-###############################################################################
-
-# Install Sublime Text settings
-cp -r config/editors/sublime/Preferences.sublime-settings ~/Library/Application\ Support/Sublime\ Text*/Packages/User/Preferences.sublime-settings 2> /dev/null
-# cp -r config/editors/sublime/Default\ (OSX).sublime-keymap ~/Library/Application\ Support/Sublime\ Text*/Packages/User/Default\ (OSX).sublime-keymap 2> /dev/null
-
-###############################################################################
 # Transmission.app                                                            #
 ###############################################################################
 

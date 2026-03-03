@@ -31,9 +31,9 @@ dotfiles/
 ├── git/            # Git configuration and helpers
 ├── config/         # Application configs organized by type
 │   ├── vim/
-│   ├── editors/
 │   ├── terminal/
-│   └── tools/
+│   ├── tools/
+│   └── claude/
 ├── scripts/        # Utility scripts (.osx for macOS defaults, httpcompression, marks)
 ├── setup/          # Modular installation scripts
 │   ├── brew/          # Homebrew installers by category
@@ -114,7 +114,12 @@ dotfiles/
 - Installed using `volta install <package>` (not `npm install -g`)
 - Volta manages these as versioned tools for better reproducibility
 - Active: diff-so-fancy (Git diff tool), pnpm (modern npm alternative)
-- Optional (commented out): typescript, ts-node, eslint, prettier
+
+### Claude Code
+- Installed via `curl -fsSL https://claude.ai/install.sh | bash` (not via volta/npm)
+- MCP integrations configured after install: Playwright (stdio), Figma (HTTP)
+- Configuration symlinked from `config/claude/` to `~/.claude/`
+- Skills in `config/claude/skills/` are symlinked to `~/.claude/skills/`
 
 ## Homebrew Package Categories
 
@@ -162,7 +167,7 @@ dotfiles/
 3. Update `shell/.zshrc` to source it (if needed)
 
 ### New Application Config
-1. Add to appropriate `config/` subdirectory (vim/, editors/, terminal/, tools/)
+1. Add to appropriate `config/` subdirectory (vim/, terminal/, tools/, claude/)
 2. Update `bootstrap.sh` to create symlink
 
 ## Important Notes
@@ -173,7 +178,8 @@ dotfiles/
 
 ### Package Installation
 - `setup/packages/install.sh` has all packages defined inline (no separate txt files)
-- Checks for command availability (gem, volta, uv) before attempting installs
+- Checks for command availability (gem, volta, uv, claude) before attempting installs
+- Claude Code installed via curl (independent of volta/Node.js)
 - Provides helpful error messages if dependencies missing
 - Easy to add/remove packages by editing the script directly
 
@@ -185,7 +191,7 @@ dotfiles/
 ### macOS Defaults
 - `scripts/.osx` contains macOS system preferences
 - Run manually: `./scripts/.osx`
-- References config paths for Sublime and terminal themes
+- References config paths for terminal themes
 
 ## Common Workflows
 

@@ -10,9 +10,6 @@ config/
 │   ├── .vimrc
 │   ├── .gvimrc
 │   └── .vim/
-├── editors/          # Editor configs
-│   ├── .editorconfig
-│   └── sublime/      # Sublime Text settings
 ├── terminal/         # Terminal apps
 │   ├── .inputrc      # Readline config
 │   ├── .screenrc     # GNU Screen
@@ -25,13 +22,9 @@ config/
 │   └── .gdbinit
 └── claude/           # Claude Code configuration
     ├── settings.json       # Permissions and settings
-    ├── CLAUDE.md          # Main config (references code-style.md)
-    ├── code-style.md      # Detailed code style preferences
-    └── commands/          # Custom slash commands
-        ├── review.md      # Code review command
-        ├── test.md        # Test generation command
-        ├── explain.md     # Code explanation command
-        └── refactor.md    # Refactoring command
+    └── skills/            # Claude Code skills
+        └── code-style/    # Code style guidelines
+            └── SKILL.md
 ```
 
 ## Vim
@@ -51,16 +44,8 @@ Color schemes for:
 
 Based on Solarized Dark theme.
 
-## EditorConfig
-
-`.editorconfig` provides consistent coding styles across editors:
-- 2-space indents for most files
-- Trim trailing whitespace
-- UTF-8 encoding
-
 ## Claude Code
 
 - **settings.json** - Permissions (allowed, ask, deny)
-- **CLAUDE.md** - Main config (references code-style.md)
-- **code-style.md** - Code preferences and conventions
-- **commands/** - Custom slash commands
+- **skills/** - Claude Code skills (symlinked to `~/.claude/skills/`)
+  - **code-style/** - Code style guidelines for writing, reviewing, and fixing code

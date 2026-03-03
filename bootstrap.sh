@@ -37,9 +37,6 @@ function doIt() {
 	ln -sf "$DOTFILES_DIR/config/vim/.gvimrc" ~/.gvimrc
 	ln -sf "$DOTFILES_DIR/config/vim/.vim" ~/.vim
 
-	# Editor configuration
-	ln -sf "$DOTFILES_DIR/config/editors/.editorconfig" ~/.editorconfig
-
 	# Terminal configuration
 	ln -sf "$DOTFILES_DIR/config/terminal/.inputrc" ~/.inputrc
 	ln -sf "$DOTFILES_DIR/config/terminal/.screenrc" ~/.screenrc
@@ -53,15 +50,17 @@ function doIt() {
 
 	# Claude configuration
 	mkdir -p ~/.claude
-	ln -sf "$DOTFILES_DIR/config/claude/CLAUDE.md" ~/.claude/CLAUDE.md
-	ln -sf "$DOTFILES_DIR/config/claude/code-style.md" ~/.claude/code-style.md
 	ln -sf "$DOTFILES_DIR/config/claude/settings.json" ~/.claude/settings.json
 
-	# Claude commands directory
-	mkdir -p ~/.claude/commands
-	if [ -d "$DOTFILES_DIR/config/claude/commands" ]; then
-		for cmd in "$DOTFILES_DIR/config/claude/commands"/*; do
-			[ -f "$cmd" ] && ln -sf "$cmd" ~/.claude/commands/
+	# Claude skills directory
+	if [ -d "$DOTFILES_DIR/config/claude/skills" ]; then
+		for skill_dir in "$DOTFILES_DIR/config/claude/skills"/*/; do
+			[ -d "$skill_dir" ] || continue
+			skill_name=$(basename "$skill_dir")
+			mkdir -p ~/.claude/skills/"$skill_name"
+			for skill_file in "$skill_dir"*; do
+				[ -f "$skill_file" ] && ln -sf "$skill_file" ~/.claude/skills/"$skill_name"/
+			done
 		done
 	fi
 
