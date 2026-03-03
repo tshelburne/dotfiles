@@ -1,3 +1,10 @@
+# Homebrew (also in .zprofile for login shells, needed here for non-login shells)
+if [ -x "/opt/homebrew/bin/brew" ]; then
+	eval "$(/opt/homebrew/bin/brew shellenv)"
+elif [ -x "/usr/local/bin/brew" ]; then
+	eval "$(/usr/local/bin/brew shellenv)"
+fi
+
 # Add `~/.bin` to the `$PATH`
 export PATH="$HOME/.npm-packages/bin:$HOME/.bin:$HOME/.local/bin:/usr/local/bin:/usr/local/sbin:$PATH"
 

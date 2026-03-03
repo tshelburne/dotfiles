@@ -20,6 +20,8 @@ function doIt() {
 	# Shell configuration
 	ln -sf "$DOTFILES_DIR/shell/.zshrc" ~/.zshrc
 	ln -sf "$DOTFILES_DIR/shell/.zprofile" ~/.zprofile
+	ln -sf "$DOTFILES_DIR/shell/.bash_profile" ~/.bash_profile
+	ln -sf "$DOTFILES_DIR/shell/.bashrc" ~/.bashrc
 	ln -sf "$DOTFILES_DIR/shell/.aliases" ~/.aliases
 	ln -sf "$DOTFILES_DIR/shell/.functions" ~/.functions
 	ln -sf "$DOTFILES_DIR/shell/.exports" ~/.exports
