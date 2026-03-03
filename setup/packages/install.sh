@@ -20,6 +20,8 @@ if command -v volta >/dev/null 2>&1; then
 
     volta install diff-so-fancy
     volta install pnpm
+    volta install firebase-tools
+    volta install eas-cli
 
     echo "✓ npm packages installed via volta"
 else

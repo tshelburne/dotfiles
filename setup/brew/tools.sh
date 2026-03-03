@@ -11,4 +11,7 @@ brew install tree
 # Install GitHub CLI
 brew install gh
 
+# Install Google Cloud SDK
+brew install --cask google-cloud-sdk
+
 echo "✓ Development tools installed"
