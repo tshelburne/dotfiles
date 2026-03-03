@@ -16,7 +16,7 @@ brew install moreutils
 # Install GNU `find`, `locate`, `updatedb`, and `xargs`, `g`-prefixed.
 brew install findutils
 
-# Install GNU `sed`, overwriting the built-in `sed`.
-brew install gnu-sed --with-default-names
+# Install GNU `sed` (available as `gsed`).
+brew install gnu-sed
 
 echo "✓ GNU core utilities installed"

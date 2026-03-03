@@ -45,7 +45,6 @@ function doIt() {
 	# Tool configuration
 	ln -sf "$DOTFILES_DIR/config/tools/.curlrc" ~/.curlrc
 	ln -sf "$DOTFILES_DIR/config/tools/.wgetrc" ~/.wgetrc
-	ln -sf "$DOTFILES_DIR/config/tools/.hgignore" ~/.hgignore
 	ln -sf "$DOTFILES_DIR/config/tools/.gdbinit" ~/.gdbinit
 
 	# Claude configuration
