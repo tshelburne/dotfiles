@@ -108,8 +108,11 @@ while IFS= read -r line; do
             fi
             ;;
     esac
+# -S 2 caps how long lsof blocks on a single kernel stat, so one stuck
+# process (e.g. a hung emulator whose cwd can't be read) can't wedge the
+# whole scan for minutes; -w silences the resulting warnings.
 done <<EOF
-$(lsof -d cwd -Fpn 2>/dev/null)
+$(lsof -S 2 -w -d cwd -Fpn 2>/dev/null)
 EOF
 
 # --- Expand to descendants (a stuck dev stack keeps children in other cwds) ---
@@ -133,7 +136,7 @@ while [ -n "$(echo "$QUEUE" | tr -d ' ')" ]; do
 done
 
 # --- pid -> listening ports, for the report ---
-PORTMAP="$(lsof -nP -iTCP -sTCP:LISTEN 2>/dev/null | awk 'NR>1{n=$9; sub(/.*:/,"",n); print $2, n}')"
+PORTMAP="$(lsof -S 2 -w -nP -iTCP -sTCP:LISTEN 2>/dev/null | awk 'NR>1{n=$9; sub(/.*:/,"",n); print $2, n}')"
 ports_of() { echo "$PORTMAP" | awk -v pp="$1" '$1==pp{printf "%s ", $2}'; }
 
 # --- Final target set: dedupe, drop protected, drop shells/editors ---
