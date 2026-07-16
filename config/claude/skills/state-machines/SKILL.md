@@ -107,15 +107,3 @@ real timers — because the effects and the clock are injected. See the
   actors with a throwing default.
 - `new Date()` inside a guard/delay instead of an injected clock.
 - Non-terminal-safe ends (no `outcome` on final states).
-
-## Concrete instances (illustration)
-
-`notched.fit` `packages/domain/src/machines/session.ts` — the machine lives in
-the domain, the `Session` entity *is* the context, guards/delays are pure reads,
-`persistSet`/`persistCompletion` are injected actors, the clock is injected;
-tests use `SimulatedClock`. `circadian-os`
-`apps/ios/src/state/light-session/` — the machine lives in the app (split into
-`machine.ts`/`actors.ts`/`recovery.ts`/…), owns the `Session` entity in context,
-rebuilds it via `rebuildFromEvents` (the single construction point), terminal
-states set `outcome`; `machine.test.ts` uses `mock.module` + `createActor` +
-`createTestClock`. `stacked.bar` has no machine — its flows don't need one.

@@ -61,7 +61,7 @@ Apps are **simply named** for what they are: `api`, `web`, `ios`/`mobile`,
 
 ## Transport preference
 
-**Prefer PostGraphile + `@byside/zod-to-gql`**: the domain zod schemas surface
+**Prefer PostGraphile + `zod-to-gql`**: the domain zod schemas surface
 directly as the GraphQL schema (objects, enums, and discriminated unions), so
 there is one source of truth and the wire stays domain-shaped. Reach for a
 Firestore-repository + HTTP stack only when a constraint demands it — e.g.

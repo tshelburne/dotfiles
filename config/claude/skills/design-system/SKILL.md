@@ -103,15 +103,3 @@ written. Put migration notes in the PR/commit.
 - Pre-scaled RN tokens, or a `scaled()` result spread into `scaledSheet`
   (double-scale bug).
 - Anachronistic migration prose in an artifact-able component's doc comment.
-
-## Concrete instances (illustration)
-
-`circadian-os` `apps/web/src/lib/design-system` is the in-app staging ground —
-`FOUNDATIONS.md` (valence vs identity palettes, 8px+4px grid, on-air-red for
-live sessions), tokens + components + colocated stories, explicitly "to be
-lifted into `@circadian/design-system`." The shared `packages/design-system`
-serves the iOS app with `./web` + `./ios` exports and the `scaledSheet` scaling
-convention. `notched.fit` `packages/design-system` is a closed token set
-("roles, not looks"; `Card` locks spacing). `stacked.bar` shares one `tokens.ts`
-→ RN StyleSheet values on mobile, CSS custom props on web, via `./web`/`./mobile`
-/`./tokens` exports.

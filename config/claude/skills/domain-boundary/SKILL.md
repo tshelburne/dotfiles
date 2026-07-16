@@ -49,13 +49,15 @@ Mapping only ever happens at `DB → schema` (server in) and `wire → entity` (
 
 ## Transport preference
 
-**Prefer PostGraphile + `@byside/zod-to-gql`.** Surfacing the domain zod schema
+**Prefer PostGraphile + `zod-to-gql`.** Surfacing the domain zod schema
 directly as the GraphQL schema gives one source of truth and a domain-shaped
 wire (objects, enums, real output unions). Fall back to a Firestore-repository +
 HTTP-client stack only when a constraint demands it — e.g. **HIPAA / compliance**
 met by a managed store. That fallback is deliberate and stated as such, not the
-default. Both realized stacks appear below.
+default. The preferred stack is illustrated below; the fallback swaps the
+GraphQL layer for typed persistence repositories and an HTTP client whose mapper
+turns validated documents into entities — same seam, different transport.
 
 ## Concrete instance (illustration)
 
-One realized stack: zod plain schemas → `@byside/zod-to-gql` in a PostGraphile v4 `makeExtendSchemaPlugin` surfaces the schema as a GraphQL union; server `db-domain-mappers` map rows → schema (+ `__typename`), computed fields expose it on reads via `@requires` + `__resolveType`; a client `mappers.ts` builds entities from connection nodes (absorbing serialized-number strings and null-tolerant partial fetches). Reference repos that established it: `stacked.bar` (zodToGql plugin) and `circadian-os` (constructor-takes-plain-data entities, mapping in the api-client).
+One realized stack: zod plain schemas → `zod-to-gql` in a PostGraphile v4 `makeExtendSchemaPlugin` surfaces the schema as a GraphQL union; server `db-domain-mappers` map rows → schema (+ `__typename`), computed fields expose it on reads via `@requires` + `__resolveType`; a client `mappers.ts` builds entities from connection nodes (absorbing serialized-number strings and null-tolerant partial fetches).
