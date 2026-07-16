@@ -7,6 +7,8 @@ description: How to structure a pure domain layer and keep persistence/transport
 
 Apply when designing or reviewing the layering between a domain model and its persistence/transport — schemas, entities, value objects, and where mapping code lives. Stack-agnostic; the concrete tech at the end is illustration, not the rule.
 
+Part of the **project-architecture** set. This skill is the *seam* — where mapping lives; its companion **domain-modeling** covers how the entity itself is shaped. See **project-architecture** for the big picture.
+
 ## The principle
 
 **The domain package stays pure.** It contains exactly two things:
@@ -44,6 +46,15 @@ Mapping only ever happens at `DB → schema` (server in) and `wire → entity` (
 - **One PR, no half-work.** Land the whole change; don't leave a feature half-migrated across the boundary.
 - **Clean history before pushing:** squash `WIP:` commits; present clean logical commits — the exemplar (one unit proving the pattern) first, then the rest applying it.
 - Confirm structural forks in the boundary design before propagating them widely.
+
+## Transport preference
+
+**Prefer PostGraphile + `@byside/zod-to-gql`.** Surfacing the domain zod schema
+directly as the GraphQL schema gives one source of truth and a domain-shaped
+wire (objects, enums, real output unions). Fall back to a Firestore-repository +
+HTTP-client stack only when a constraint demands it — e.g. **HIPAA / compliance**
+met by a managed store. That fallback is deliberate and stated as such, not the
+default. Both realized stacks appear below.
 
 ## Concrete instance (illustration)
 

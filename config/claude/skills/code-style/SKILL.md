@@ -7,6 +7,11 @@ description: Code style guidelines for writing, reviewing, and fixing code. Appl
 
 Apply these guidelines when writing, reviewing, or fixing code in this codebase.
 
+The micro-level member of the **project-architecture** set (naming, functions,
+hooks, conditionals, structure). For the macro shape — monorepo layout, pure
+domain, design system, state machines, testability — start at
+**project-architecture** and its spokes.
+
 ## Philosophy
 
 Code should be clear, minimal, and composable. Structure should read top-down like a story: main logic first, helpers last.
