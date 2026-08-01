@@ -1,7 +1,4 @@
 {
-  "additionalDirectories": [],
-  "alwaysThinkingEnabled": true,
-  "defaultMode": "acceptAll",
   "permissions": {
     "allow": [
       "Read(./**)",
@@ -42,6 +39,14 @@
       "Bash(dirname:*)",
       "Bash(basename:*)"
     ],
+    "deny": [
+      "Write(/)",
+      "Edit(/)",
+      "Read(/etc/**)",
+      "Bash(rm -rf /*)",
+      "Bash(shutdown:*)",
+      "Read(./**/secrets/**)"
+    ],
     "ask": [
       "Bash(sudo:*)",
       "Bash(curl:*)",
@@ -50,14 +55,11 @@
       "Bash(brew:*)",
       "Bash(pnpm dlx:*)",
       "Read(./.env)"
-    ],
-    "deny": [
-      "Write(/)",
-      "Edit(/)",
-      "Read(/etc/**)",
-      "Bash(rm -rf /*)",
-      "Bash(shutdown:*)",
-      "Read(./**/secrets/**)"
     ]
-  }
+  },
+  "alwaysThinkingEnabled": true,
+  "additionalDirectories": [],
+  "defaultMode": "acceptAll",
+  "agentPushNotifEnabled": true,
+  "inputNeededNotifEnabled": true
 }
