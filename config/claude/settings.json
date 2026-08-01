@@ -55,11 +55,11 @@
       "Bash(brew:*)",
       "Bash(pnpm dlx:*)",
       "Read(./.env)"
-    ]
+    ],
+    "defaultMode": "auto",
+    "additionalDirectories": []
   },
   "alwaysThinkingEnabled": true,
-  "additionalDirectories": [],
-  "defaultMode": "acceptAll",
   "agentPushNotifEnabled": true,
   "inputNeededNotifEnabled": true
 }
