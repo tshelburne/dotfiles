@@ -22,6 +22,8 @@ config/
 │   └── .gdbinit
 └── claude/           # Claude Code configuration
     ├── settings.json       # Permissions, settings, and plugin subscriptions
+    ├── hooks/             # Scripts settings.json wires to tool events
+    │   └── gate-kill-project-processes.sh
     └── skills/            # Personal Claude Code skills
         └── kill-project-processes/
             └── SKILL.md
@@ -50,6 +52,14 @@ Based on Solarized Dark theme.
   the plugin marketplaces this machine subscribes to
 - **skills/** - Personal skills, symlinked to `~/.claude/skills/`
   - **kill-project-processes/** - Kill dev servers across a project's worktrees
+- **hooks/** - Scripts `settings.json` wires to tool events, symlinked to
+  `~/.claude/hooks/`. They must live here rather than only in the home
+  directory: `settings.json` references them by path, so an unversioned script
+  means a broken hook on a fresh machine.
+  - **gate-kill-project-processes.sh** - A `PreToolUse` gate that forces an
+    explicit approval prompt before the kill-project-processes skill (or its
+    script) runs, since it kills dev servers across every worktree and should
+    never fire autonomously. Silent for every other call.
 
 ### Plugins
 
