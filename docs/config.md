@@ -21,9 +21,9 @@ config/
 │   ├── .hgignore
 │   └── .gdbinit
 └── claude/           # Claude Code configuration
-    ├── settings.json       # Permissions and settings
-    └── skills/            # Claude Code skills
-        └── code-style/    # Code style guidelines
+    ├── settings.json       # Permissions, settings, and plugin subscriptions
+    └── skills/            # Personal Claude Code skills
+        └── kill-project-processes/
             └── SKILL.md
 ```
 
@@ -46,6 +46,37 @@ Based on Solarized Dark theme.
 
 ## Claude Code
 
-- **settings.json** - Permissions (allowed, ask, deny)
-- **skills/** - Claude Code skills (symlinked to `~/.claude/skills/`)
-  - **code-style/** - Code style guidelines for writing, reviewing, and fixing code
+- **settings.json** - Permissions (allow, ask, deny), notification settings, and
+  the plugin marketplaces this machine subscribes to
+- **skills/** - Personal skills, symlinked to `~/.claude/skills/`
+  - **kill-project-processes/** - Kill dev servers across a project's worktrees
+
+### Plugins
+
+Skills meant to be shared — with other people or other projects — don't live
+here. They're published from [`tshelburne/claude-plugins`](https://github.com/tshelburne/claude-plugins)
+and consumed the same way anyone else would consume them, via `settings.json`:
+
+```json
+{
+  "extraKnownMarketplaces": {
+    "tshelburne": {
+      "source": { "source": "github", "repo": "tshelburne/claude-plugins" }
+    }
+  },
+  "enabledPlugins": {
+    "project-architecture@tshelburne": true
+  }
+}
+```
+
+Because that's declarative, there's nothing for `bootstrap.sh` to symlink —
+Claude Code fetches and caches the plugin itself. Dropping the same two keys
+into a *project's* `.claude/settings.json` gives every contributor on that repo
+the same skills automatically.
+
+Currently subscribed:
+
+- **project-architecture** - The layered architecture standard: a pure domain at
+  the center, operations as use cases, thin surfaces at the edges, and the
+  ratchets that keep it true in CI.
