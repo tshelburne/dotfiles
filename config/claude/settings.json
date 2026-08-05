@@ -61,5 +61,16 @@
   },
   "alwaysThinkingEnabled": true,
   "agentPushNotifEnabled": true,
-  "inputNeededNotifEnabled": true
+  "inputNeededNotifEnabled": true,
+  "extraKnownMarketplaces": {
+    "tshelburne": {
+      "source": {
+        "source": "github",
+        "repo": "tshelburne/claude-plugins"
+      }
+    }
+  },
+  "enabledPlugins": {
+    "project-architecture@tshelburne": true
+  }
 }
