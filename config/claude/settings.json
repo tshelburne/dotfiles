@@ -54,10 +54,24 @@
       "Bash(apt-get:*)",
       "Bash(brew:*)",
       "Bash(pnpm dlx:*)",
-      "Read(./.env)"
+      "Read(./.env)",
+      "Bash(~/.claude/skills/kill-project-processes/kill-project-processes.sh:*)"
     ],
     "defaultMode": "auto",
     "additionalDirectories": []
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Skill|Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$HOME/.claude/hooks/gate-kill-project-processes.sh\""
+          }
+        ]
+      }
+    ]
   },
   "alwaysThinkingEnabled": true,
   "agentPushNotifEnabled": true,

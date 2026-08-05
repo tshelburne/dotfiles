@@ -65,6 +65,14 @@ function doIt() {
 		done
 	fi
 
+	# Claude hooks (referenced by settings.json as $HOME/.claude/hooks/...)
+	if [ -d "$DOTFILES_DIR/config/claude/hooks" ]; then
+		mkdir -p ~/.claude/hooks
+		for hook_file in "$DOTFILES_DIR/config/claude/hooks"/*; do
+			[ -f "$hook_file" ] && ln -sf "$hook_file" ~/.claude/hooks/
+		done
+	fi
+
 	# Directory marking functions
 	mkdir -p ~/.marks
 	ln -sf "$DOTFILES_DIR/scripts/marks/.functions" ~/.marks/.functions
