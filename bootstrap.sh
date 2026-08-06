@@ -10,8 +10,6 @@ if [ -f ".env" ]; then
     set +a  # Stop exporting
 fi
 
-git pull origin main;
-
 function doIt() {
 	DOTFILES_DIR="$PWD"
 
