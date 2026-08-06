@@ -8,7 +8,7 @@
 
 ### Using Git and the bootstrap script
 
-You can clone the repository wherever you want. (I like to keep it in `~/Projects/dotfiles`, with `~/dotfiles` as a symlink.) The bootstrapper script will pull in the latest version and copy the files to your home folder.
+You can clone the repository wherever you want. (I like to keep it in `~/Projects/dotfiles`, with `~/dotfiles` as a symlink.) The bootstrapper script symlinks the files into your home folder and syncs Claude Code plugins. It does not touch your checkout — pull first, then apply what you pulled.
 
 ```zsh
 git clone https://github.com/tshelburne/dotfiles.git
@@ -21,13 +21,13 @@ source bootstrap.sh
 To update, `cd` into your local `dotfiles` repository and then:
 
 ```zsh
-source bootstrap.sh
+git pull && source bootstrap.sh
 ```
 
 Alternatively, to update while avoiding the confirmation prompt:
 
 ```zsh
-set -- -f; source bootstrap.sh
+git pull; set -- -f; source bootstrap.sh
 ```
 
 ### Repository Structure
