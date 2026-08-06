@@ -76,7 +76,8 @@ and consumed the same way anyone else would consume them, via `settings.json`:
   },
   "enabledPlugins": {
     "project-architecture@tshelburne": true,
-    "github-practices@tshelburne": true
+    "github-practices@tshelburne": true,
+    "dev-environment@tshelburne": true
   }
 }
 ```
@@ -94,6 +95,9 @@ Currently subscribed:
 - **github-practices** - How to create and run a GitHub repository to a
   standard: the questions to settle up front, then branch protection, CI
   gating, and the checks that verify it.
+- **dev-environment** - Running a project locally: wiring dev servers into the
+  preview pane through `.claude/launch.json`, and working in git worktrees
+  without the failures they cause.
 
 ### Updating plugins
 
@@ -107,10 +111,19 @@ version explicitly:
 claude plugin marketplace update tshelburne
 claude plugin update project-architecture@tshelburne
 claude plugin update github-practices@tshelburne
+claude plugin update dev-environment@tshelburne
 ```
 
 The first refreshes the catalog, which is what makes a *newly published* plugin
-visible at all; the rest re-install one plugin each at the newer commit. All of
-it takes effect on the next Claude Code restart. Adding a plugin that wasn't
-previously enabled is the only case that also needs an edit here — a new key in
-`enabledPlugins`.
+visible at all. The rest re-install at the newer commit, one command per
+subscribed plugin — there's no update-all. Everything takes effect on the next
+Claude Code restart.
+
+Adding a plugin needs two things instead of one: a new key in `enabledPlugins`
+here, and a first `install` on each machine. `update` refuses a plugin it has
+never installed — `enabledPlugins` says a plugin *should* be on, but it doesn't
+fetch one:
+
+```sh
+claude plugin install dev-environment@tshelburne
+```
