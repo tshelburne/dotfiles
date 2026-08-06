@@ -1,0 +1,61 @@
+name: ci
+
+# Tier 1 by design: this repo is shell scripts and symlinks, and a bad commit
+# sits harmlessly until someone runs bootstrap.sh. So the gate is syntax and one
+# behavioural check — enough to make branch protection mean something, and not
+# so much that it rots.
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # A syntax error here is only discovered on a fresh machine, halfway
+      # through setting one up.
+      - name: Shell syntax
+        run: |
+          status=0
+          for f in $(git ls-files '*.sh'); do
+            if bash -n "$f"; then
+              echo "  ok   $f"
+            else
+              echo "  FAIL $f"; status=1
+            fi
+          done
+          exit "$status"
+
+      # settings.json is symlinked to ~/.claude/settings.json. Invalid JSON
+      # there degrades Claude Code silently rather than loudly.
+      - name: JSON parses
+        run: |
+          status=0
+          for f in $(git ls-files '*.json'); do
+            if python3 -c "import json,sys; json.load(open(sys.argv[1]))" "$f"; then
+              echo "  ok   $f"
+            else
+              echo "  FAIL $f"; status=1
+            fi
+          done
+          exit "$status"
+
+      # The gate exists to stop a destructive skill running unattended, so
+      # "it still fires" is the one behaviour worth asserting.
+      - name: kill-project-processes gate fires
+        run: |
+          HOOK=config/claude/hooks/gate-kill-project-processes.sh
+
+          decision=$(echo '{"tool_name":"Skill","tool_input":{"skill":"kill-project-processes"}}' \
+            | "$HOOK" \
+            | python3 -c "import json,sys; print(json.load(sys.stdin)['hookSpecificOutput']['permissionDecision'])")
+          [ "$decision" = "ask" ] || { echo "expected 'ask', got '$decision'"; exit 1; }
+          echo "  ok   targets the skill -> ask"
+
+          out=$(echo '{"tool_name":"Bash","tool_input":{"command":"ls -la"}}' | "$HOOK")
+          [ -z "$out" ] || { echo "expected silence for an unrelated call, got: $out"; exit 1; }
+          echo "  ok   unrelated call -> silent"
