@@ -73,9 +73,11 @@
       }
     ]
   },
-  "alwaysThinkingEnabled": true,
-  "agentPushNotifEnabled": true,
-  "inputNeededNotifEnabled": true,
+  "enabledPlugins": {
+    "project-architecture@tshelburne": true,
+    "dev-environment@tshelburne": true,
+    "github-practices@tshelburne": true
+  },
   "extraKnownMarketplaces": {
     "tshelburne": {
       "source": {
@@ -84,7 +86,7 @@
       }
     }
   },
-  "enabledPlugins": {
-    "project-architecture@tshelburne": true
-  }
+  "alwaysThinkingEnabled": true,
+  "inputNeededNotifEnabled": true,
+  "agentPushNotifEnabled": true
 }
