@@ -85,6 +85,7 @@
     }
   },
   "enabledPlugins": {
-    "project-architecture@tshelburne": true
+    "project-architecture@tshelburne": true,
+    "github-practices@tshelburne": true
   }
 }

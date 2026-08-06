@@ -75,7 +75,8 @@ and consumed the same way anyone else would consume them, via `settings.json`:
     }
   },
   "enabledPlugins": {
-    "project-architecture@tshelburne": true
+    "project-architecture@tshelburne": true,
+    "github-practices@tshelburne": true
   }
 }
 ```
@@ -90,3 +91,26 @@ Currently subscribed:
 - **project-architecture** - The layered architecture standard: a pure domain at
   the center, operations as use cases, thin surfaces at the edges, and the
   ratchets that keep it true in CI.
+- **github-practices** - How to create and run a GitHub repository to a
+  standard: the questions to settle up front, then branch protection, CI
+  gating, and the checks that verify it.
+
+### Updating plugins
+
+`settings.json` names which plugins are on; it doesn't pin or track their
+contents. Claude Code installs a plugin at whatever commit the marketplace was
+at when it fetched, then holds that version until told otherwise — so merging
+to `claude-plugins` changes nothing on this machine on its own. Pull the new
+version explicitly:
+
+```sh
+claude plugin marketplace update tshelburne
+claude plugin update project-architecture@tshelburne
+claude plugin update github-practices@tshelburne
+```
+
+The first refreshes the catalog, which is what makes a *newly published* plugin
+visible at all; the rest re-install one plugin each at the newer commit. All of
+it takes effect on the next Claude Code restart. Adding a plugin that wasn't
+previously enabled is the only case that also needs an edit here — a new key in
+`enabledPlugins`.
