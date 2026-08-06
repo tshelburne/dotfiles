@@ -59,3 +59,41 @@ jobs:
           out=$(echo '{"tool_name":"Bash","tool_input":{"command":"ls -la"}}' | "$HOOK")
           [ -z "$out" ] || { echo "expected silence for an unrelated call, got: $out"; exit 1; }
           echo "  ok   unrelated call -> silent"
+
+      # bootstrap.sh once ate the skill files it was meant to link: when the
+      # destination in ~ was already a symlink back into the repo, every link
+      # resolved through it and overwrote the source with a link to itself. It
+      # is the one bootstrap failure that damages tracked content rather than
+      # just leaving a bad symlink, so it gets a test.
+      - name: bootstrap survives a destination that links into the repo
+        run: |
+          T="$RUNNER_TEMP/bootstrap-check"
+          rm -rf "$T"
+          mkdir -p "$T/repo" "$T/home/.claude/skills"
+          cp -R config "$T/repo/config"
+
+          # the hostile starting state
+          ln -s "$T/repo/config/claude/skills/kill-project-processes" \
+                "$T/home/.claude/skills/kill-project-processes"
+          ln -s "$T/repo/config/claude/hooks" "$T/home/.claude/hooks"
+
+          # run the linking blocks the way bootstrap.sh defines them
+          sed -n '/# Claude skills/,/[[:space:]]*# Directory marking/p' bootstrap.sh | sed '$d' > "$T/blocks.sh"
+
+          # `|| true` because the extracted block ends on whatever the last
+          # `[ -f ... ] && ln` evaluated to, and the assertions below are what
+          # should decide this test — not an incidental exit code.
+          for run in 1 2; do
+            ( DOTFILES_DIR="$T/repo"; HOME="$T/home"; . "$T/blocks.sh" ) || true
+          done
+
+          skill="$T/repo/config/claude/skills/kill-project-processes/SKILL.md"
+          [ -f "$skill" ] && [ ! -L "$skill" ] \
+            || { echo "FAIL: bootstrap replaced the tracked skill with a symlink"; exit 1; }
+          grep -q "^name: kill-project-processes" "$skill" \
+            || { echo "FAIL: skill content did not survive"; exit 1; }
+          echo "  ok   tracked skill files survive re-runs"
+
+          [ "$(readlink "$T/home/.claude/skills/kill-project-processes/SKILL.md")" = "$skill" ] \
+            || { echo "FAIL: ~ was not linked to the repo skill"; exit 1; }
+          echo "  ok   ~/.claude/skills still points at the repo"

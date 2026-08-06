@@ -53,20 +53,31 @@ function doIt() {
 	mkdir -p ~/.claude
 	ln -sf "$DOTFILES_DIR/config/claude/settings.json" ~/.claude/settings.json
 
-	# Claude skills directory
+	# Claude skills directory.
+	#
+	# The `[ -L ]` check is load-bearing. If the destination is already a symlink
+	# back to this repo — which is what an older bootstrap left behind — then
+	# `mkdir -p` silently follows it and every `ln -sf` below resolves back into
+	# the repo, replacing each skill file with a symlink to itself. The skill's
+	# contents are destroyed, and `git status` reports it as a type change rather
+	# than anything alarming. Drop the link first and write into a real directory.
 	if [ -d "$DOTFILES_DIR/config/claude/skills" ]; then
 		for skill_dir in "$DOTFILES_DIR/config/claude/skills"/*/; do
 			[ -d "$skill_dir" ] || continue
 			skill_name=$(basename "$skill_dir")
-			mkdir -p ~/.claude/skills/"$skill_name"
+			skill_dest=~/.claude/skills/"$skill_name"
+			[ -L "$skill_dest" ] && rm "$skill_dest"
+			mkdir -p "$skill_dest"
 			for skill_file in "$skill_dir"*; do
-				[ -f "$skill_file" ] && ln -sf "$skill_file" ~/.claude/skills/"$skill_name"/
+				[ -f "$skill_file" ] && ln -sf "$skill_file" "$skill_dest"/
 			done
 		done
 	fi
 
-	# Claude hooks (referenced by settings.json as $HOME/.claude/hooks/...)
+	# Claude hooks (referenced by settings.json as $HOME/.claude/hooks/...).
+	# Same hazard as skills above, so the same guard.
 	if [ -d "$DOTFILES_DIR/config/claude/hooks" ]; then
+		[ -L ~/.claude/hooks ] && rm ~/.claude/hooks
 		mkdir -p ~/.claude/hooks
 		for hook_file in "$DOTFILES_DIR/config/claude/hooks"/*; do
 			[ -f "$hook_file" ] && ln -sf "$hook_file" ~/.claude/hooks/
