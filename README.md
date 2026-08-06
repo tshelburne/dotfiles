@@ -45,7 +45,7 @@ dotfiles/
 │   ├── packages/      # Package manager lists (gems, npm via volta, uv tools)
 │   └── launchagents/  # macOS background service setup
 ├── docs/           # Documentation for each directory
-├── bootstrap.sh    # Symlinks dotfiles to home directory
+├── bootstrap.sh    # Symlinks dotfiles to home directory, syncs Claude plugins
 └── setup.sh        # Main setup script (runs all installations)
 ```
 

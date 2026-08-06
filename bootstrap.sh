@@ -79,6 +79,15 @@ function doIt() {
 
 	echo "Symlinks created successfully!"
 
+	# Claude plugins. Declaring a plugin in settings.json doesn't fetch it, and a
+	# fetched one stays pinned at its commit, so this is what actually carries a
+	# merge in the plugins repo onto this machine. It runs after the symlinks
+	# above because it reads the settings.json they just wired up.
+	mkdir -p ~/.bin
+	ln -sf "$DOTFILES_DIR/config/claude/sync-plugins.sh" ~/.bin/claude-plugins-sync
+	echo ""
+	"$DOTFILES_DIR/config/claude/sync-plugins.sh"
+
 	# Source zsh configuration
 	if [ -n "$ZSH_VERSION" ]; then
 		# Running in zsh
