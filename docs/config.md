@@ -102,6 +102,30 @@ Currently subscribed:
   preview pane through `.claude/launch.json`, and working in git worktrees
   without the failures they cause.
 
+### Turning off a single plugin skill
+
+`enabledPlugins` is all-or-nothing, and `skillOverrides` — the setting that
+turns an individual skill off — is ignored for skills that come from a plugin:
+Claude Code resolves plugin skills to "on" before it ever reads the override.
+The lever that does bite is a permission deny rule on the `Skill` tool, keyed by
+the skill's qualified `<plugin>:<skill>` name:
+
+```json
+{
+  "permissions": {
+    "deny": ["Skill(github-practices:qa-evidence)"]
+  }
+}
+```
+
+That hard-blocks the skill for the model and for a typed `/github-practices:qa-evidence`,
+while the rest of the plugin keeps working. It blocks invocation rather than
+listing, so the skill still shows up in the skills catalog — it just can't run.
+
+Currently denied:
+
+- **github-practices:qa-evidence** - Off for now.
+
 ### Updating plugins
 
 `settings.json` names which plugins are on; it doesn't pin or track their
