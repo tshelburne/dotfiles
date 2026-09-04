@@ -45,7 +45,8 @@
       "Read(/etc/**)",
       "Bash(rm -rf /*)",
       "Bash(shutdown:*)",
-      "Read(./**/secrets/**)"
+      "Read(./**/secrets/**)",
+      "Skill(github-practices:qa-evidence)"
     ],
     "ask": [
       "Bash(sudo:*)",
