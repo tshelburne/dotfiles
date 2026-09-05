@@ -122,9 +122,16 @@ That hard-blocks the skill for the model and for a typed `/github-practices:qa-e
 while the rest of the plugin keeps working. It blocks invocation rather than
 listing, so the skill still shows up in the skills catalog — it just can't run.
 
-Currently denied:
+**Which is why it is a poor lever for a skill that over-triggers.** A skill's
+`description` is injected into every session whether or not the skill loads, so
+a deny keeps the nudge and removes the recipe: the session still believes it
+owes you the work and no longer has the sanctioned way to do it, so it
+improvises. Denying `qa-evidence` on 05 Sep produced exactly that — sessions
+went on trying to capture browser evidence, by hand, with `curl` and `python`
+instead of the `evidence` CLI. A skill that fires too often is fixed in its
+frontmatter, upstream; a deny only helps for a skill you want gone entirely.
 
-- **github-practices:qa-evidence** - Off for now.
+Currently denied: none.
 
 ### Updating plugins
 
