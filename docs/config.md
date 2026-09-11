@@ -22,6 +22,7 @@ config/
 │   └── .gdbinit
 └── claude/           # Claude Code configuration
     ├── settings.json       # Permissions, settings, and plugin subscriptions
+    ├── CLAUDE.md           # Instructions loaded into every session, any project
     ├── sync-plugins.sh     # Installs/updates the plugins settings.json declares
     ├── hooks/             # Scripts settings.json wires to tool events
     │   └── gate-kill-project-processes.sh
@@ -51,6 +52,11 @@ Based on Solarized Dark theme.
 
 - **settings.json** - Permissions (allow, ask, deny), notification settings, and
   the plugin marketplaces this machine subscribes to
+- **CLAUDE.md** - Instructions Claude Code loads in every session regardless
+  of project, symlinked to `~/.claude/CLAUDE.md`. It holds facts about how I
+  want to be worked with, never anything about a particular repo — a
+  project-shaped claim belongs in that project's own `CLAUDE.md`, and a copy
+  per project drifts the moment one is edited
 - **sync-plugins.sh** - Installs and updates every plugin `settings.json`
   declares. Run by `bootstrap.sh` and available as `claude-plugins-sync`
 - **skills/** - Personal skills, symlinked to `~/.claude/skills/`

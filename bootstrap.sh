@@ -50,6 +50,7 @@ function doIt() {
 	# Claude configuration
 	mkdir -p ~/.claude
 	ln -sf "$DOTFILES_DIR/config/claude/settings.json" ~/.claude/settings.json
+	ln -sf "$DOTFILES_DIR/config/claude/CLAUDE.md" ~/.claude/CLAUDE.md
 
 	# Claude skills directory.
 	#
