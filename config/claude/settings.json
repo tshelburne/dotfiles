@@ -77,9 +77,9 @@
     "project-architecture@tshelburne": true,
     "dev-environment@tshelburne": true,
     "github-practices@tshelburne": true,
+    "i-have-adhd@i-have-adhd": true,
     "swift-lsp@claude-plugins-official": true,
-    "react-tips@neciudan.dev": true,
-    "i-have-adhd@i-have-adhd": true
+    "react-tips@neciudan.dev": true
   },
   "extraKnownMarketplaces": {
     "tshelburne": {
@@ -88,16 +88,16 @@
         "repo": "tshelburne/claude-plugins"
       }
     },
-    "neciudan.dev": {
-      "source": {
-        "source": "github",
-        "repo": "Cst2989/react-tips-skill"
-      }
-    },
     "i-have-adhd": {
       "source": {
         "source": "github",
         "repo": "ayghri/i-have-adhd"
+      }
+    },
+    "neciudan.dev": {
+      "source": {
+        "source": "github",
+        "repo": "Cst2989/react-tips-skill"
       }
     }
   },
