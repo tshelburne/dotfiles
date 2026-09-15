@@ -8,6 +8,10 @@ echo "Installing programming languages..."
 brew install uv
 uv python install 3.12
 
+# Install OpenJDK
+brew install openjdk
+sudo ln -sfn /opt/homebrew/opt/openjdk/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk.jdk
+
 # Install volta (Fast Node.js version manager)
 # Note: volta is installed via Homebrew for easier management
 brew install volta
