@@ -15,7 +15,9 @@
       "Bash(chmod:*)",
       "Bash(/Users/timshelburne/Projects/dotfiles/setup/launchagents/ollama-proxy.sh:*)",
       "Bash(/Users/timshelburne/Projects/dotfiles/setup/launchagents/ollama.sh:*)",
-      "Bash(timeout:*)"
+      "Bash(timeout:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)"
     ],
     "deny": [],
     "ask": []

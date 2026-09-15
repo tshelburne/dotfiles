@@ -76,7 +76,10 @@
   "enabledPlugins": {
     "project-architecture@tshelburne": true,
     "dev-environment@tshelburne": true,
-    "github-practices@tshelburne": true
+    "github-practices@tshelburne": true,
+    "swift-lsp@claude-plugins-official": true,
+    "react-tips@neciudan.dev": true,
+    "i-have-adhd@i-have-adhd": true
   },
   "extraKnownMarketplaces": {
     "tshelburne": {
@@ -84,9 +87,23 @@
         "source": "github",
         "repo": "tshelburne/claude-plugins"
       }
+    },
+    "neciudan.dev": {
+      "source": {
+        "source": "github",
+        "repo": "Cst2989/react-tips-skill"
+      }
+    },
+    "i-have-adhd": {
+      "source": {
+        "source": "github",
+        "repo": "ayghri/i-have-adhd"
+      }
     }
   },
   "alwaysThinkingEnabled": true,
+  "effortLevel": "high",
   "inputNeededNotifEnabled": true,
-  "agentPushNotifEnabled": true
+  "agentPushNotifEnabled": true,
+  "skipAutoPermissionPrompt": true
 }

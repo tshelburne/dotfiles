@@ -11,9 +11,17 @@ export PATH="$HOME/.npm-packages/bin:$HOME/.bin:$HOME/.local/bin:/usr/local/bin:
 # PostgreSQL path (from bashrc)
 export PATH="/opt/homebrew/opt/postgresql@15/bin:$PATH"
 
+# OpenJDK
+export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
+
 # volta setup (Fast Node.js version manager)
 export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin:$PATH"
+
+# GitHub Packages auth — used by .npmrc to install private @tshelburne/* packages
+if command -v gh >/dev/null 2>&1; then
+	export GITHUB_TOKEN="$(gh auth token 2>/dev/null)"
+fi
 
 # Load the shell dotfiles, and then some:
 # * ~/.path can be used to extend `$PATH`.
@@ -173,3 +181,10 @@ PROMPT2="${yellow}→ ${reset}"
 
 # enable passing literals that don't match any files as-is (instead of throwing an error)
 setopt nonomatch
+# pnpm
+export PNPM_HOME="/Users/timshelburne/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
