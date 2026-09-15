@@ -76,13 +76,20 @@
   "enabledPlugins": {
     "project-architecture@tshelburne": true,
     "dev-environment@tshelburne": true,
-    "github-practices@tshelburne": true
+    "github-practices@tshelburne": true,
+    "i-have-adhd@i-have-adhd": true
   },
   "extraKnownMarketplaces": {
     "tshelburne": {
       "source": {
         "source": "github",
         "repo": "tshelburne/claude-plugins"
+      }
+    },
+    "i-have-adhd": {
+      "source": {
+        "source": "github",
+        "repo": "ayghri/i-have-adhd"
       }
     }
   },
