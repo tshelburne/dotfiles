@@ -188,3 +188,8 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
+
+# infra: the CLI lives in its data directory, each version in ~/.infra/cli and
+# ~/.infra/bin/infra linking the current one (`infra host update` moves it).
+# Last, so it is ahead of Volta and pnpm, either of which may hold an older infra.
+export PATH="$HOME/.infra/bin:$PATH"

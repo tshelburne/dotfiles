@@ -37,7 +37,8 @@
       "Bash(diff:*)",
       "Bash(wc:*)",
       "Bash(dirname:*)",
-      "Bash(basename:*)"
+      "Bash(basename:*)",
+      "Bash(pnpm infra:*)"
     ],
     "deny": [
       "Write(/)",
@@ -45,7 +46,8 @@
       "Read(/etc/**)",
       "Bash(rm -rf /*)",
       "Bash(shutdown:*)",
-      "Read(./**/secrets/**)"
+      "Read(./**/secrets/**)",
+      "Bash(pnpm infra host:*)"
     ],
     "ask": [
       "Bash(sudo:*)",
@@ -103,6 +105,7 @@
   },
   "alwaysThinkingEnabled": true,
   "effortLevel": "high",
+  "skipWorkflowUsageWarning": true,
   "inputNeededNotifEnabled": true,
   "agentPushNotifEnabled": true,
   "skipAutoPermissionPrompt": true
