@@ -87,7 +87,7 @@
     "tshelburne": {
       "source": {
         "source": "github",
-        "repo": "tshelburne/claude-plugins"
+        "repo": "tshelburne/framework"
       }
     },
     "i-have-adhd": {
