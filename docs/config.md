@@ -73,14 +73,14 @@ Based on Solarized Dark theme.
 ### Plugins
 
 Skills meant to be shared — with other people or other projects — don't live
-here. They're published from [`tshelburne/claude-plugins`](https://github.com/tshelburne/claude-plugins)
+here. They're published from [`tshelburne/framework`](https://github.com/tshelburne/framework)
 and consumed the same way anyone else would consume them, via `settings.json`:
 
 ```json
 {
   "extraKnownMarketplaces": {
     "tshelburne": {
-      "source": { "source": "github", "repo": "tshelburne/claude-plugins" }
+      "source": { "source": "github", "repo": "tshelburne/framework" }
     }
   },
   "enabledPlugins": {
@@ -143,7 +143,7 @@ Currently denied: none.
 
 `settings.json` names which plugins are on; it doesn't pin or track their
 contents. Claude Code installs a plugin at whatever commit the marketplace was
-at when it fetched, then holds it there — so merging to `claude-plugins`
+at when it fetched, then holds it there — so merging to `tshelburne/framework`
 changes nothing on this machine on its own. Something has to go and pull it.
 That something is `config/claude/sync-plugins.sh`:
 
